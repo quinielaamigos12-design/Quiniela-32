@@ -1,26 +1,95 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Login Quiniela32</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiniela 32 - Login</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #008cff;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #006fcc;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
-<h1>Quiniela 32</h1>
-<h2>Login</h2>
 
-<input id="user" placeholder="Nombre"><br>
-<input id="pass" type="password" placeholder="Contraseña"><br>
-<button onclick="goLogin()">Entrar</button>
+    <div class="login-container">
+        <h2>Quiniela 32</h2>
 
-<script src="js/main.js"></script>
-<script>
-function goLogin(){
-    let u = document.getElementById("user").value;
-    let p = document.getElementById("pass").value;
-    if(!login(u,p)) alert("Credenciales incorrectas");
-}
-</script>
+        <input type="text" id="user" placeholder="Usuario">
+        <input type="password" id="pass" placeholder="Contraseña">
+
+        <button onclick="login()">Entrar</button>
+
+        <p class="error" id="error-msg">Usuario o contraseña incorrectos</p>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById("user").value.trim();
+            const pass = document.getElementById("pass").value.trim();
+
+            // 🔐 Login configurado aquí
+            const adminUser = "admin";
+            const adminPass = "1234";
+
+            if (user === adminUser && pass === adminPass) {
+                window.location.href = "admin.html";
+            } else {
+                document.getElementById("error-msg").style.display = "block";
+            }
+        }
+    </script>
+
 </body>
 </html>
