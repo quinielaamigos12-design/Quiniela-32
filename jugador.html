@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Jugador</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Zona Jugador</h1>
+<div id="contenido"></div>
+
+<script src="js/main.js"></script>
+<script>
+let url = new URL(window.location);
+let user = url.searchParams.get("user");
+document.body.insertAdjacentHTML("afterbegin","<h2>Jugador: "+user+"</h2>");
+
+let jornadas = JSON.parse(localStorage.getItem("jornadas")||"[]");
+let pronos = JSON.parse(localStorage.getItem("pronosticos")||"{}");
+
+let html = "";
+jornadas.forEach(j=>{
+    html += "<h3>Jornada "+j.id+"</h3>";
+    j.partidos.forEach((p,i)=>{
+        let val = (pronos[user] && pronos[user][j.id]) ? pronos[user][j.id][i] : "";
+        html += p+" → <input id='p_"+j.id+"_"+i+"' value='"+val+"' size='1'><br>";
+    });
+    html += "<button onclick='guardar("+j.id+")'>Guardar</button><hr>";
+});
+
+document.getElementById("contenido").innerHTML = html;
+
+function guardar(jid){
+    let j = jornadas.find(x=>x.id==jid);
+    let lista = j.partidos.map((p,i)=>{
+        return document.getElementById("p_"+jid+"_"+i).value || "X";
+    });
+    guardarPronostico(user, jid, lista);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Quiniela32</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>PANEL ADMIN</h1>
+
+<h2>Crear jugador</h2>
+<input id="nuevoJugador" placeholder="Nombre jugador">
+<button onclick="crearJugador()">Crear</button>
+
+<h2>Generar Jornada</h2>
+<button onclick="genJornada()">Crear nueva jornada</button>
+
+<h2>Ver datos (consola)</h2>
+<button onclick="verDatos()">Mostrar localStorage</button>
+
+<script src="js/main.js"></script>
+<script>
+function crearJugador(){
+    let n = document.getElementById("nuevoJugador").value;
+    adminCrearJugador(n);
+}
+function genJornada(){
+    generarJornada();
+}
+function verDatos(){
+    console.log('Jugadores:', localStorage.getItem('jugadores'));
+    console.log('Jornadas:', localStorage.getItem('jornadas'));
+    console.log('Pronósticos:', localStorage.getItem('pronosticos'));
+    alert("Datos enviados a consola");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Quiniela32</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Quiniela 32</h1>
+<h2>Login</h2>
+
+<input id="user" placeholder="Nombre"><br>
+<input id="pass" type="password" placeholder="Contraseña"><br>
+<button onclick="goLogin()">Entrar</button>
+
+<script src="js/main.js"></script>
+<script>
+function goLogin(){
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
+    if(!login(u,p)) alert("Credenciales incorrectas");
+}
+</script>
+</body>
+</html>
