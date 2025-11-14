@@ -1,43 +1,35 @@
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Jugador</title>
-<link rel="stylesheet" href="css/style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Quiniela 32 — Jugador</title>
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<h1>Zona Jugador</h1>
-<div id="contenido"></div>
+<div class="container">
+  <h1>Zona Jugador — Quiniela 32</h1>
+  <div class="card">
+    <div>Jugador: <b id="playerName"></b></div>
+    <button id="btnLogout">Cerrar sesión</button>
+  </div>
 
-<script src="js/main.js"></script>
-<script>
-let url = new URL(window.location);
-let user = url.searchParams.get("user");
-document.body.insertAdjacentHTML("afterbegin","<h2>Jugador: "+user+"</h2>");
+  <div class="card">
+    <h3>Jornadas disponibles</h3>
+    <select id="selectJornada"></select>
+    <div id="partidosArea"></div>
+    <button id="savePron">Guardar pronósticos</button>
+  </div>
 
-let jornadas = JSON.parse(localStorage.getItem("jornadas")||"[]");
-let pronos = JSON.parse(localStorage.getItem("pronosticos")||"{}");
+  <div class="card">
+    <h3>Ver pronósticos de todos</h3>
+    <button id="showAll">Mostrar todos</button>
+    <pre id="allPron" style="white-space:pre-wrap"></pre>
+  </div>
 
-let html = "";
-jornadas.forEach(j=>{
-    html += "<h3>Jornada "+j.id+"</h3>";
-    j.partidos.forEach((p,i)=>{
-        let val = (pronos[user] && pronos[user][j.id]) ? pronos[user][j.id][i] : "";
-        html += p+" → <input id='p_"+j.id+"_"+i+"' value='"+val+"' size='1'><br>";
-    });
-    html += "<button onclick='guardar("+j.id+")'>Guardar</button><hr>";
-});
+</div>
 
-document.getElementById("contenido").innerHTML = html;
-
-function guardar(jid){
-    let j = jornadas.find(x=>x.id==jid);
-    let lista = j.partidos.map((p,i)=>{
-        return document.getElementById("p_"+jid+"_"+i).value || "X";
-    });
-    guardarPronostico(user, jid, lista);
-}
-</script>
+<script src="js/auth.js"></script>
+<script src="js/jugador.js"></script>
 </body>
 </html>

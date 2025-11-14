@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "name": "Quiniela 32",
+    "league": "LaLiga (España)",
+    "season": "2024/2025",
+    "matches_per_jornada": 14
+  },
+  "players": [
+    {
+      "id": 1,
+      "name": "Jugador 1",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 2,
+      "name": "Jugador 2",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 3,
+      "name": "Jugador 3",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 4,
+      "name": "Jugador 4",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 5,
+      "name": "Jugador 5",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 6,
+      "name": "Jugador 6",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 7,
+      "name": "Jugador 7",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 8,
+      "name": "Jugador 8",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 9,
+      "name": "Jugador 9",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 10,
+      "name": "Jugador 10",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 11,
+      "name": "Jugador 11",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 12,
+      "name": "Jugador 12",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 13,
+      "name": "Jugador 13",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 14,
+      "name": "Jugador 14",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 15,
+      "name": "Jugador 15",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 16,
+      "name": "Jugador 16",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 17,
+      "name": "Jugador 17",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 18,
+      "name": "Jugador 18",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 19,
+      "name": "Jugador 19",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 20,
+      "name": "Jugador 20",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 21,
+      "name": "Jugador 21",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 22,
+      "name": "Jugador 22",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 23,
+      "name": "Jugador 23",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 24,
+      "name": "Jugador 24",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 25,
+      "name": "Jugador 25",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 26,
+      "name": "Jugador 26",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 27,
+      "name": "Jugador 27",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 28,
+      "name": "Jugador 28",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 29,
+      "name": "Jugador 29",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 30,
+      "name": "Jugador 30",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 31,
+      "name": "Jugador 31",
+      "active": true,
+      "password": "pass1234"
+    },
+    {
+      "id": 32,
+      "name": "Jugador 32",
+      "active": true,
+      "password": "pass1234"
+    }
+  ],
+  "jornadas": []
+}
