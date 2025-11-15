@@ -8,275 +8,196 @@
   "players": [
     {
       "id": 1,
-      "name": "ADRIAN",
+      "name": "Jugador 1",
       "active": true,
-      "password": "ADRIAN1"
+      "password": "pass1234"
     },
     {
       "id": 2,
-      "name": "ALBERTO",
+      "name": "Jugador 2",
       "active": true,
-      "password": "ALBERTO2"
+      "password": "pass1234"
     },
     {
       "id": 3,
-      "name": "ALONSO",
+      "name": "Jugador 3",
       "active": true,
-      "password": "ALONSO3"
+      "password": "pass1234"
     },
     {
       "id": 4,
-      "name": "ANDRES",
+      "name": "Jugador 4",
       "active": true,
-      "password": "ANDRES4"
+      "password": "pass1234"
     },
     {
       "id": 5,
-      "name": "ABELARDO",
+      "name": "Jugador 5",
       "active": true,
-      "password": "ABELARDO5"
+      "password": "pass1234"
     },
     {
       "id": 6,
-      "name": "ANTONIO GA",
+      "name": "Jugador 6",
       "active": true,
-      "password": "ANTONIO GA6"
+      "password": "pass1234"
     },
     {
       "id": 7,
-      "name": "BARTOLO",
+      "name": "Jugador 7",
       "active": true,
-      "password": "BARTOLO7"
+      "password": "pass1234"
     },
     {
       "id": 8,
-      "name": "CARLOS",
+      "name": "Jugador 8",
       "active": true,
-      "password": "CARLOS8"
+      "password": "pass1234"
     },
     {
       "id": 9,
-      "name": "DAVID",
+      "name": "Jugador 9",
       "active": true,
-      "password": "DAVID9"
+      "password": "pass1234"
     },
     {
       "id": 10,
-      "name": "JAVI",
+      "name": "Jugador 10",
       "active": true,
-      "password": "JAVI10"
+      "password": "pass1234"
     },
     {
       "id": 11,
-      "name": "JESUS",
+      "name": "Jugador 11",
       "active": true,
-      "password": "JESUS11"
+      "password": "pass1234"
     },
     {
       "id": 12,
-      "name": "MANOLO",
+      "name": "Jugador 12",
       "active": true,
-      "password": "MANOLO12"
+      "password": "pass1234"
     },
     {
       "id": 13,
-      "name": "RAFA",
+      "name": "Jugador 13",
       "active": true,
-      "password": "RAFA13"
+      "password": "pass1234"
     },
     {
       "id": 14,
-      "name": "SOUSA",
+      "name": "Jugador 14",
       "active": true,
-      "password": "SOUSA14"
+      "password": "pass1234"
     },
     {
       "id": 15,
-      "name": "JUAN",
+      "name": "Jugador 15",
       "active": true,
-      "password": "JUAN15"
+      "password": "pass1234"
     },
     {
       "id": 16,
-      "name": "JON",
+      "name": "Jugador 16",
       "active": true,
-      "password": "JON16"
+      "password": "pass1234"
     },
     {
       "id": 17,
-      "name": "JULIO",
+      "name": "Jugador 17",
       "active": true,
-      "password": "JULIO17"
+      "password": "pass1234"
     },
     {
       "id": 18,
-      "name": "GERRADO",
+      "name": "Jugador 18",
       "active": true,
-      "password": "GERRADO18"
+      "password": "pass1234"
     },
     {
       "id": 19,
-      "name": "ANDONI",
+      "name": "Jugador 19",
       "active": true,
-      "password": "ANDONI19"
+      "password": "pass1234"
     },
     {
       "id": 20,
-      "name": "ALEX",
+      "name": "Jugador 20",
       "active": true,
-      "password": "ALEX20"
+      "password": "pass1234"
     },
     {
       "id": 21,
-      "name": "LOPEZ",
+      "name": "Jugador 21",
       "active": true,
-      "password": "LOPEZ21"
+      "password": "pass1234"
     },
     {
       "id": 22,
-      "name": "FRAN",
+      "name": "Jugador 22",
       "active": true,
-      "password": "FRAN22"
+      "password": "pass1234"
     },
     {
       "id": 23,
-      "name": "MIGUI",
+      "name": "Jugador 23",
       "active": true,
-      "password": "MIGUI23"
+      "password": "pass1234"
     },
     {
       "id": 24,
-      "name": "ARANDA",
+      "name": "Jugador 24",
       "active": true,
-      "password": "ARANDA24"
+      "password": "pass1234"
     },
     {
       "id": 25,
-      "name": "FRAN CUR",
+      "name": "Jugador 25",
       "active": true,
-      "password": "FRAN CUR25"
+      "password": "pass1234"
     },
     {
       "id": 26,
-      "name": "CARLOS FER",
+      "name": "Jugador 26",
       "active": true,
-      "password": "CARLOS FER26"
+      "password": "pass1234"
     },
     {
       "id": 27,
-      "name": "RAMON",
+      "name": "Jugador 27",
       "active": true,
-      "password": "RAMON27"
+      "password": "pass1234"
     },
     {
       "id": 28,
-      "name": "JUAN A.",
+      "name": "Jugador 28",
       "active": true,
-      "password": "JUAN A.28"
+      "password": "pass1234"
     },
     {
       "id": 29,
-      "name": "SAMUEL",
+      "name": "Jugador 29",
       "active": true,
-      "password": "SAMUEL29"
+      "password": "pass1234"
     },
     {
       "id": 30,
-      "name": "DOMINGUEZ",
+      "name": "Jugador 30",
       "active": true,
-      "password": "DOMINGUEZ30"
+      "password": "pass1234"
     },
     {
       "id": 31,
-      "name": "DAVID LUNITA",
+      "name": "Jugador 31",
       "active": true,
-      "password": "DAVID LUNITA31"
+      "password": "pass1234"
     },
     {
       "id": 32,
-      "name": "CRISTIAN",
+      "name": "Jugador 32",
       "active": true,
-      "password": "CRISTIAN32"
+      "password": "pass1234"
     }
   ],
-  "jornadas": [
-    {
-      "id": 1,
-      "partidos": [
-        {
-          "local": "Girona FC",
-          "visitante": "Rayo Vallecano",
-          "resultado": null
-        },
-        {
-          "local": "Villarreal CF",
-          "visitante": "Real Oviedo",
-          "resultado": null
-        },
-        {
-          "local": "Deportivo Alavés",
-          "visitante": "Levante UD",
-          "resultado": null
-        },
-        {
-          "local": "RCD Mallorca",
-          "visitante": "FC Barcelona",
-          "resultado": null
-        },
-        {
-          "local": "Athletic Club",
-          "visitante": "Sevilla FC",
-          "resultado": null
-        },
-        {
-          "local": "RC Celta de Vigo",
-          "visitante": "Getafe CF",
-          "resultado": null
-        },
-        {
-          "local": "RCD Espanyol",
-          "visitante": "Club Atlético de Madrid",
-          "resultado": null
-        },
-        {
-          "local": "Real Madrid",
-          "visitante": "Elche CF",
-          "resultado": null
-        },
-        {
-          "local": "Valencia CF",
-          "visitante": "Real Betis",
-          "resultado": null
-        },
-        {
-          "local": "Cádiz CF",
-          "visitante": "Granada CF",
-          "resultado": null
-        },
-        {
-          "local": "SD Eibar",
-          "visitante": "CD Leganés",
-          "resultado": null
-        },
-        {
-          "local": "CD Tenerife",
-          "visitante": "Real Zaragoza",
-          "resultado": null
-        },
-        {
-          "local": "Burgos CF",
-          "visitante": "FC Cartagena",
-          "resultado": null
-        },
-        {
-          "local": "Real Valladolid",
-          "visitante": "UD Almería",
-          "resultado": null
-        }
-      ],
-      "published": false,
-      "autoClosed": false,
-      "pronosticos": {}
-    }
-  ]
+  "jornadas": []
 }

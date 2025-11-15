@@ -3,58 +3,43 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Panel Admin — Quiniela 32</title>
+<title>Quiniela 32 — Admin</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="bg">
-  <div class="wrap">
-    <header class="card brand">
-      <h1>Panel Admin — Quiniela 32</h1>
-      <div class="actions">
-        <button id="logout" class="btn ghost">Cerrar sesión</button>
-      </div>
-    </header>
-
-    <main>
-      <section class="card">
-        <h3>Import / Export data.json</h3>
-        <div class="row">
-          <button id="btnExport" class="btn">Exportar data.json</button>
-          <input type="file" id="importFile" />
-          <button id="btnImport" class="btn ghost">Importar</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3>Gestión de jugadores</h3>
-        <div id="playersList" class="list"></div>
-        <div class="row">
-          <input id="newPlayerName" placeholder="Nombre nuevo (ej: ADRIAN)" />
-          <button id="addPlayerBtn" class="btn">Crear jugador</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3>Jornadas</h3>
-        <div class="row">
-          <button id="createDefaultJornada" class="btn">Crear jornada (14 partidos)</button>
-          <input id="apiUrl" placeholder="URL API (opcional)" />
-          <button id="importFromApi" class="btn ghost">Importar desde API</button>
-        </div>
-        <div id="jornadasList" class="list"></div>
-        <div class="row">
-          <button id="closeNow" class="btn warn">Cerrar jornada ahora</button>
-          <button id="reopenNow" class="btn ghost">Reabrir jornada</button>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3>Clasificación</h3>
-        <button id="calcGeneral" class="btn">Calcular clasificación general</button>
-        <pre id="results" class="mono"></pre>
-      </section>
-    </main>
+<body>
+<div class="container">
+  <h1>Panel Admin — Quiniela 32</h1>
+  <div class="card">
+    <button id="btnExport">Exportar data.json (descargar)</button>
+    <input type="file" id="importFile" />
+    <button id="btnImport">Importar data.json</button>
   </div>
+
+  <div class="card">
+    <h3>Gestión de jugadores</h3>
+    <div id="playersList"></div>
+    <input id="newPlayerName" placeholder="Nombre nuevo jugador" />
+    <button id="addPlayerBtn">Añadir jugador</button>
+  </div>
+
+  <div class="card">
+    <h3>Jornadas</h3>
+    <button id="createDefaultJornada">Crear jornada de ejemplo (14 partidos)</button>
+    <input id="apiUrl" placeholder="Pegar URL API de la Quiniela (opcional)" />
+    <button id="importFromApi">Importar jornada desde URL</button>
+    <div id="jornadasList"></div>
+  </div>
+
+  <div class="card">
+    <h3>Calcular aciertos y aplicar multas</h3>
+    <button id="calcBtn">Calcular y mostrar clasificación</button>
+    <pre id="results" style="white-space:pre-wrap"></pre>
+  </div>
+
+  <div class="card">
+    <button id="logout">Cerrar sesión</button>
+  </div>
+</div>
 
 <script src="js/auth.js"></script>
 <script src="js/admin.js"></script>
