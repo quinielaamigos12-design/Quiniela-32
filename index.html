@@ -6,21 +6,34 @@
 <title>Quiniela 32 — Login</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-<div class="container">
-  <h1>Quiniela 32</h1>
-  <div id="loginBox" class="card">
-    <h2>Iniciar sesión</h2>
-    <input id="inputUser" placeholder="Usuario (Nombre exacto)" />
-    <input id="inputPass" placeholder="Contraseña" type="password" />
-    <button id="btnLogin">Entrar</button>
-    <p id="msg" class="msg"></p>
-    <p class="small">Si es la primera vez, tu contraseña inicial es <b>pass1234</b>. Puedes cambiarla en tu primer acceso.</p>
+<body class="bg">
+  <div class="wrap">
+    <header class="card brand">
+      <h1>Quiniela 32</h1>
+      <p class="muted">Accede como administrador o jugador</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Iniciar sesión</h2>
+        <label>Usuario (nombre exacto)</label>
+        <input id="inputUser" placeholder="Usuario (ej: ADRIAN)" />
+        <label>Contraseña</label>
+        <input id="inputPass" placeholder="Contraseña" type="password" />
+        <button id="btnLogin" class="btn">Entrar</button>
+        <p id="msg" class="msg"></p>
+        <p class="small muted">Si es la primera vez tu contraseña inicial es <b>pass1234</b></p>
+      </section>
+
+      <section class="card small">
+        <h3>Atajos</h3>
+        <p>Admin: <b>admin</b> (contraseña: <i>Quiniela2025*</i>)</p>
+      </section>
+    </main>
+
+    <footer class="small muted">Diseño moderno — Quiniela</footer>
   </div>
-  <div class="notes">
-    <p>Si eres administrador usa usuario <b>admin</b>. Admin puede exportar/importar <code>data.json</code> para compartir los cambios.</p>
-  </div>
-</div>
+
 <script src="js/auth.js"></script>
 </body>
 </html>

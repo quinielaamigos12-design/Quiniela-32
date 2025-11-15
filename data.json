@@ -199,5 +199,84 @@
       "password": "CRISTIAN32"
     }
   ],
-  "jornadas": []
+  "jornadas": [
+    {
+      "id": 1,
+      "partidos": [
+        {
+          "local": "Girona FC",
+          "visitante": "Rayo Vallecano",
+          "resultado": null
+        },
+        {
+          "local": "Villarreal CF",
+          "visitante": "Real Oviedo",
+          "resultado": null
+        },
+        {
+          "local": "Deportivo Alavés",
+          "visitante": "Levante UD",
+          "resultado": null
+        },
+        {
+          "local": "RCD Mallorca",
+          "visitante": "FC Barcelona",
+          "resultado": null
+        },
+        {
+          "local": "Athletic Club",
+          "visitante": "Sevilla FC",
+          "resultado": null
+        },
+        {
+          "local": "RC Celta de Vigo",
+          "visitante": "Getafe CF",
+          "resultado": null
+        },
+        {
+          "local": "RCD Espanyol",
+          "visitante": "Club Atlético de Madrid",
+          "resultado": null
+        },
+        {
+          "local": "Real Madrid",
+          "visitante": "Elche CF",
+          "resultado": null
+        },
+        {
+          "local": "Valencia CF",
+          "visitante": "Real Betis",
+          "resultado": null
+        },
+        {
+          "local": "Cádiz CF",
+          "visitante": "Granada CF",
+          "resultado": null
+        },
+        {
+          "local": "SD Eibar",
+          "visitante": "CD Leganés",
+          "resultado": null
+        },
+        {
+          "local": "CD Tenerife",
+          "visitante": "Real Zaragoza",
+          "resultado": null
+        },
+        {
+          "local": "Burgos CF",
+          "visitante": "FC Cartagena",
+          "resultado": null
+        },
+        {
+          "local": "Real Valladolid",
+          "visitante": "UD Almería",
+          "resultado": null
+        }
+      ],
+      "published": false,
+      "autoClosed": false,
+      "pronosticos": {}
+    }
+  ]
 }

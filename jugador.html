@@ -3,31 +3,39 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Quiniela 32 — Jugador</title>
+<title>Zona Jugador — Quiniela 32</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-<div class="container">
-  <h1>Zona Jugador — Quiniela 32</h1>
-  <div class="card">
-    <div>Jugador: <b id="playerName"></b></div>
-    <button id="btnLogout">Cerrar sesión</button>
-  </div>
+<body class="bg">
+  <div class="wrap">
+    <header class="card brand">
+      <h1>Zona Jugador</h1>
+      <div>Jugador: <b id="playerName"></b></div>
+      <div class="actions"><button id="btnLogout" class="btn ghost">Cerrar sesión</button></div>
+    </header>
 
-  <div class="card">
-    <h3>Jornadas disponibles</h3>
-    <select id="selectJornada"></select>
-    <div id="partidosArea"></div>
-    <button id="savePron">Guardar pronósticos</button>
-  </div>
+    <main>
+      <section class="card">
+        <h3>Jornadas disponibles</h3>
+        <select id="selectJornada"></select>
+        <div id="partidosArea" class="list"></div>
+        <div class="row">
+          <button id="savePron" class="btn">Guardar pronósticos</button>
+          <button id="showAll" class="btn ghost">Mostrar todos</button>
+        </div>
+      </section>
 
-  <div class="card">
-    <h3>Ver pronósticos de todos</h3>
-    <button id="showAll">Mostrar todos</button>
-    <pre id="allPron" style="white-space:pre-wrap"></pre>
-  </div>
+      <section class="card">
+        <h3>Mi saldo y estado</h3>
+        <div id="playerSaldo" class="mono"></div>
+      </section>
 
-</div>
+      <section class="card">
+        <h3>Ver pronósticos de todos</h3>
+        <pre id="allPron" class="mono"></pre>
+      </section>
+    </main>
+  </div>
 
 <script src="js/auth.js"></script>
 <script src="js/jugador.js"></script>
