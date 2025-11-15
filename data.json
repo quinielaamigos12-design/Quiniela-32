@@ -8,195 +8,195 @@
   "players": [
     {
       "id": 1,
-      "name": "Jugador 1",
+      "name": "ADRIAN",
       "active": true,
-      "password": "pass1234"
+      "password": "ADRIAN1"
     },
     {
       "id": 2,
-      "name": "Jugador 2",
+      "name": "ALBERTO",
       "active": true,
-      "password": "pass1234"
+      "password": "ALBERTO2"
     },
     {
       "id": 3,
-      "name": "Jugador 3",
+      "name": "ALONSO",
       "active": true,
-      "password": "pass1234"
+      "password": "ALONSO3"
     },
     {
       "id": 4,
-      "name": "Jugador 4",
+      "name": "ANDRES",
       "active": true,
-      "password": "pass1234"
+      "password": "ANDRES4"
     },
     {
       "id": 5,
-      "name": "Jugador 5",
+      "name": "ABELARDO",
       "active": true,
-      "password": "pass1234"
+      "password": "ABELARDO5"
     },
     {
       "id": 6,
-      "name": "Jugador 6",
+      "name": "ANTONIO GA",
       "active": true,
-      "password": "pass1234"
+      "password": "ANTONIO GA6"
     },
     {
       "id": 7,
-      "name": "Jugador 7",
+      "name": "BARTOLO",
       "active": true,
-      "password": "pass1234"
+      "password": "BARTOLO7"
     },
     {
       "id": 8,
-      "name": "Jugador 8",
+      "name": "CARLOS",
       "active": true,
-      "password": "pass1234"
+      "password": "CARLOS8"
     },
     {
       "id": 9,
-      "name": "Jugador 9",
+      "name": "DAVID",
       "active": true,
-      "password": "pass1234"
+      "password": "DAVID9"
     },
     {
       "id": 10,
-      "name": "Jugador 10",
+      "name": "JAVI",
       "active": true,
-      "password": "pass1234"
+      "password": "JAVI10"
     },
     {
       "id": 11,
-      "name": "Jugador 11",
+      "name": "JESUS",
       "active": true,
-      "password": "pass1234"
+      "password": "JESUS11"
     },
     {
       "id": 12,
-      "name": "Jugador 12",
+      "name": "MANOLO",
       "active": true,
-      "password": "pass1234"
+      "password": "MANOLO12"
     },
     {
       "id": 13,
-      "name": "Jugador 13",
+      "name": "RAFA",
       "active": true,
-      "password": "pass1234"
+      "password": "RAFA13"
     },
     {
       "id": 14,
-      "name": "Jugador 14",
+      "name": "SOUSA",
       "active": true,
-      "password": "pass1234"
+      "password": "SOUSA14"
     },
     {
       "id": 15,
-      "name": "Jugador 15",
+      "name": "JUAN",
       "active": true,
-      "password": "pass1234"
+      "password": "JUAN15"
     },
     {
       "id": 16,
-      "name": "Jugador 16",
+      "name": "JON",
       "active": true,
-      "password": "pass1234"
+      "password": "JON16"
     },
     {
       "id": 17,
-      "name": "Jugador 17",
+      "name": "JULIO",
       "active": true,
-      "password": "pass1234"
+      "password": "JULIO17"
     },
     {
       "id": 18,
-      "name": "Jugador 18",
+      "name": "GERRADO",
       "active": true,
-      "password": "pass1234"
+      "password": "GERRADO18"
     },
     {
       "id": 19,
-      "name": "Jugador 19",
+      "name": "ANDONI",
       "active": true,
-      "password": "pass1234"
+      "password": "ANDONI19"
     },
     {
       "id": 20,
-      "name": "Jugador 20",
+      "name": "ALEX",
       "active": true,
-      "password": "pass1234"
+      "password": "ALEX20"
     },
     {
       "id": 21,
-      "name": "Jugador 21",
+      "name": "LOPEZ",
       "active": true,
-      "password": "pass1234"
+      "password": "LOPEZ21"
     },
     {
       "id": 22,
-      "name": "Jugador 22",
+      "name": "FRAN",
       "active": true,
-      "password": "pass1234"
+      "password": "FRAN22"
     },
     {
       "id": 23,
-      "name": "Jugador 23",
+      "name": "MIGUI",
       "active": true,
-      "password": "pass1234"
+      "password": "MIGUI23"
     },
     {
       "id": 24,
-      "name": "Jugador 24",
+      "name": "ARANDA",
       "active": true,
-      "password": "pass1234"
+      "password": "ARANDA24"
     },
     {
       "id": 25,
-      "name": "Jugador 25",
+      "name": "FRAN CUR",
       "active": true,
-      "password": "pass1234"
+      "password": "FRAN CUR25"
     },
     {
       "id": 26,
-      "name": "Jugador 26",
+      "name": "CARLOS FER",
       "active": true,
-      "password": "pass1234"
+      "password": "CARLOS FER26"
     },
     {
       "id": 27,
-      "name": "Jugador 27",
+      "name": "RAMON",
       "active": true,
-      "password": "pass1234"
+      "password": "RAMON27"
     },
     {
       "id": 28,
-      "name": "Jugador 28",
+      "name": "JUAN A.",
       "active": true,
-      "password": "pass1234"
+      "password": "JUAN A.28"
     },
     {
       "id": 29,
-      "name": "Jugador 29",
+      "name": "SAMUEL",
       "active": true,
-      "password": "pass1234"
+      "password": "SAMUEL29"
     },
     {
       "id": 30,
-      "name": "Jugador 30",
+      "name": "DOMINGUEZ",
       "active": true,
-      "password": "pass1234"
+      "password": "DOMINGUEZ30"
     },
     {
       "id": 31,
-      "name": "Jugador 31",
+      "name": "DAVID LUNITA",
       "active": true,
-      "password": "pass1234"
+      "password": "DAVID LUNITA31"
     },
     {
       "id": 32,
-      "name": "Jugador 32",
+      "name": "CRISTIAN",
       "active": true,
-      "password": "pass1234"
+      "password": "CRISTIAN32"
     }
   ],
   "jornadas": []
