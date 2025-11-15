@@ -4,30 +4,34 @@
 <meta charset="UTF-8">
 <title>Quiniela 32 - Login</title>
 <style>
-body { font-family: Arial; background:#f0f0f0; padding:40px; }
-.container { background:white; padding:20px; max-width:400px; margin:auto; border-radius:10px; }
-input { width:100%; padding:10px; margin:8px 0; }
-button { width:100%; padding:10px; margin-top:10px; }
-.showpass { cursor:pointer; margin-left:5px; }
+body { font-family: Arial; background:#e9edf0; padding:40px; }
+.container { background:white; padding:25px; max-width:420px; margin:auto; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.15); }
+input { width:100%; padding:11px; margin:8px 0; border-radius:6px; border:1px solid #aaa; }
+button { padding:10px; border:none; background:#007bff; color:white; border-radius:6px; cursor:pointer; font-size:16px; }
+button:hover { background:#005fcc; }
+.eye-btn { width:50px; margin-left:6px; background:#444; }
+.eye-btn:hover { background:#222; }
+.row { display:flex; }
 </style>
 </head>
 <body>
 <div class="container">
 <h2>Iniciar sesión</h2>
+
 <label>Nombre</label>
 <input id="user" type="text">
 
 <label>Contraseña</label>
-<div style="display:flex;">
+<div class="row">
 <input id="pass" type="password" style="flex:1;">
-<button type="button" onclick="togglePass()">👁</button>
+<button type="button" class="eye-btn" onclick="togglePass()">👁</button>
 </div>
 
 <button onclick="login()">Entrar</button>
 
 <script>
 function togglePass(){
-  const p = document.getElementById('pass');
+  const p=document.getElementById('pass');
   p.type = p.type === 'password' ? 'text' : 'password';
 }
 
@@ -40,7 +44,6 @@ function login(){
     return;
   }
 
-  // fallback normal players
   fetch('data.json').then(r=>r.json()).then(db=>{
     const player=db.players.find(x=>x.name===u && x.password===p);
     if(player) window.location="jugador.html?user="+encodeURIComponent(u);
