@@ -1,26 +1,53 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Quiniela 32 — Login</title>
-<link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8">
+<title>Quiniela 32 - Login</title>
+<style>
+body { font-family: Arial; background:#f0f0f0; padding:40px; }
+.container { background:white; padding:20px; max-width:400px; margin:auto; border-radius:10px; }
+input { width:100%; padding:10px; margin:8px 0; }
+button { width:100%; padding:10px; margin-top:10px; }
+.showpass { cursor:pointer; margin-left:5px; }
+</style>
 </head>
 <body>
 <div class="container">
-  <h1>Quiniela 32</h1>
-  <div id="loginBox" class="card">
-    <h2>Iniciar sesión</h2>
-    <input id="inputUser" placeholder="Usuario (Nombre exacto)" />
-    <input id="inputPass" placeholder="Contraseña" type="password" />
-    <button id="btnLogin">Entrar</button>
-    <p id="msg" class="msg"></p>
-    <p class="small">Si es la primera vez, tu contraseña inicial es <b>pass1234</b>. Puedes cambiarla en tu primer acceso.</p>
-  </div>
-  <div class="notes">
-    <p>Si eres administrador usa usuario <b>admin</b>. Admin puede exportar/importar <code>data.json</code> para compartir los cambios.</p>
-  </div>
+<h2>Iniciar sesión</h2>
+<label>Nombre</label>
+<input id="user" type="text">
+
+<label>Contraseña</label>
+<div style="display:flex;">
+<input id="pass" type="password" style="flex:1;">
+<button type="button" onclick="togglePass()">👁</button>
 </div>
-<script src="js/auth.js"></script>
+
+<button onclick="login()">Entrar</button>
+
+<script>
+function togglePass(){
+  const p = document.getElementById('pass');
+  p.type = p.type === 'password' ? 'text' : 'password';
+}
+
+function login(){
+  const u=document.getElementById('user').value.trim();
+  const p=document.getElementById('pass').value.trim();
+
+  if(u==="ADMINISTRADOR" && p==="1234"){
+    window.location="admin.html";
+    return;
+  }
+
+  // fallback normal players
+  fetch('data.json').then(r=>r.json()).then(db=>{
+    const player=db.players.find(x=>x.name===u && x.password===p);
+    if(player) window.location="jugador.html?user="+encodeURIComponent(u);
+    else alert("Usuario o contraseña incorrectos");
+  });
+}
+</script>
+</div>
 </body>
 </html>
