@@ -253,37 +253,156 @@
       "name": "Jornada 1",
       "partidos": [
         {
-          "home": "Barcelona",
-          "away": "Real Madrid"
+          "home": "Girona",
+          "away": "R. Vallecano"
         },
         {
-          "home": "Betis",
-          "away": "Sevilla"
+          "home": "Villarreal",
+          "away": "R. Oviedo"
         },
         {
-          "home": "Valencia",
+          "home": "Alavés",
           "away": "Levante"
         },
         {
-          "home": "Atletico",
-          "away": "Girona"
+          "home": "Mallorca",
+          "away": "Barcelona"
         },
         {
-          "home": "Rayo",
+          "home": "Valencia",
+          "away": "R. Sociedad"
+        },
+        {
+          "home": "Celta",
           "away": "Getafe"
         },
         {
+          "home": "Athletic Club",
+          "away": "Sevilla"
+        },
+        {
+          "home": "Espanyol",
+          "away": "At. Madrid"
+        },
+        {
+          "home": "Racing",
+          "away": "Castellon"
+        },
+        {
+          "home": "Málaga",
+          "away": "Eibar"
+        },
+        {
+          "home": "Granada",
+          "away": "Deportivo"
+        },
+        {
           "home": "Cadiz",
-          "away": "Malaga"
+          "away": "Mirandés"
+        },
+        {
+          "home": "Huesca",
+          "away": "Leganes"
+        },
+        {
+          "home": "Las Palmas",
+          "away": "Andorra"
         }
       ],
       "resultados": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "2",
+        "1",
+        "1",
+        "2",
+        "X",
+        "2",
+        "1",
+        "1",
+        "1",
+        "X",
+        "2",
+        "1",
+        "X",
+        "X"
+      ],
+      "pronosticos": {}
+    },
+    {
+      "id": "2",
+      "name": "Jornada 2",
+      "partidos": [
+        {
+          "home": "Mallorca",
+          "away": "Celta"
+        },
+        {
+          "home": "At. Madrid",
+          "away": "Elche"
+        },
+        {
+          "home": "Levante",
+          "away": "Barcelona"
+        },
+        {
+          "home": "Osasuna",
+          "away": "Valencia"
+        },
+        {
+          "home": "R. Sociedad",
+          "away": "Espanyol"
+        },
+        {
+          "home": "Villarreal",
+          "away": "Girona"
+        },
+        {
+          "home": "R. Oviedo",
+          "away": "R. Madrid"
+        },
+        {
+          "home": "Athletic Club",
+          "away": "R. Vallecano"
+        },
+        {
+          "home": "Mirandés",
+          "away": "Huesca"
+        },
+        {
+          "home": "Ceuta",
+          "away": "Sporting"
+        },
+        {
+          "home": "R. Zaragoza",
+          "away": "Andorra"
+        },
+        {
+          "home": "Deportivo",
+          "away": "Burgos"
+        },
+        {
+          "home": "Cultural L.",
+          "away": "Almeria"
+        },
+        {
+          "home": "Albacete",
+          "away": "Racing"
+        }
+      ],
+      "resultados": [
+        "X",
+        "X",
+        "2",
+        "1",
+        "X",
+        "1",
+        "2",
+        "1",
+        "2",
+        "2",
+        "2",
+        "X",
+        "2",
+        "2"
       ],
       "pronosticos": {}
     }
