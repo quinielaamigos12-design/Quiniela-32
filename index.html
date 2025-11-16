@@ -1,39 +1,24 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Quiniela 32 — Login</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<div style="display:flex;min-height:100vh;">
-  <div class="sidebar">
-    <h2>Quiniela 32</h2>
-    <p class="small-muted">App privada - data.json</p>
-    <a class="active" href="#">Iniciar sesión</a>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Quiniela32 — Login</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Quiniela 32</div></div>
+<div class="container-main">
+  <nav class="sidebar" id="sidebar">
+    <a class="active">Iniciar sesión</a>
     <a href="index.html">Ayuda</a>
-  </div>
-
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;">
-    <div class="card" style="width:420px;">
-      <h3>Accede a tu cuenta</h3>
-      <div class="form-group">
-        <label>Usuario</label>
-        <input id="user" type="text" />
-      </div>
-      <div class="form-group">
-        <label>Contraseña</label>
-        <input id="pass" type="password" />
-      </div>
-      <div style="display:flex;gap:10px;align-items:center;">
-        <button id="loginBtn" class="btn">Entrar</button>
-        <div id="msg" class="small-muted"></div>
-      </div>
+  </nav>
+  <main class="content">
+    <div class="card" style="max-width:560px;margin:auto">
+      <h3>Iniciar sesión</h3>
+      <div style="margin-top:8px"><label>Usuario</label><input id="user" type="text" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd"></div>
+      <div style="margin-top:8px"><label>Contraseña</label><input id="pass" type="password" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd"></div>
+      <div style="margin-top:12px"><button id="loginBtn" class="btn">Entrar</button> <span id="msg" class="small" style="margin-left:12px"></span></div>
+      <div style="margin-top:10px" class="small">Usuarios: admin/admin1234 (admin) — MIGI/MIGUI23 (jugador)</div>
     </div>
-  </div>
+  </main>
 </div>
-
 <script src="auth.js"></script>
-</body>
-</html>
+<script>
+document.getElementById('menuBtn').addEventListener('click', ()=>{
+  const sb = document.getElementById('sidebar'); sb.classList.toggle('open');
+});
+</script>
+</body></html>

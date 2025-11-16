@@ -1,1 +1,1 @@
-console.log('admin loaded');
+// admin script placeholder

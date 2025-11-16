@@ -1,1 +1,31 @@
-<html><body>Admin</body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin — Quiniela32</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Admin — Quiniela32</div></div>
+<div class="container-main">
+  <nav class="sidebar" id="sidebar"><a class="active">Panel</a><a href="index.html">Salir</a></nav>
+  <main class="content">
+    <div class="card"><h3>Importar jornada desde API (ThesportsDB)</h3>
+      <div class="small">Liga: LaLiga. Introduce número de jornada y pulsa importar.</div>
+      <div style="margin-top:8px"><input id="round" placeholder="Número de jornada (ej: 12)"><button id="importApi" class="btn">Importar</button></div>
+      <div style="margin-top:10px"><button id="autoCreate" class="btn">Crear jornada vacía (14 partidos)</button></div>
+    </div>
+
+    <div class="card"><h3>Jornadas</h3><div id="jornadasList"></div></div>
+
+    <div class="card"><h3>Resultados y cálculo</h3><div class="small">Selecciona jornada y establece resultados 1/X/2; luego calcula aciertos.</div><div id="resultsPanel"></div><div style="margin-top:10px"><button id="calcBtn" class="btn">Calcular clasificación</button></div><div id="clasificacion" style="margin-top:12px"></div></div>
+  </main>
+</div>
+<script src="auth.js"></script>
+<script>
+const API_BASE='https://www.thesportsdb.com/api/v1/json/3/eventsround.php?id=4335&r=';
+async function fetchRound(r){ const url=API_BASE+encodeURIComponent(r)+'&s=2024-2025'; const res=await fetch(url); if(!res.ok) throw new Error('API error'); const data=await res.json(); return data.events||[]; }
+async function loadData(){ try{ return await fetch('data.json',{cache:'no-store'}).then(r=>r.json()); }catch(e){ return {players:[],jornadas:[]}; } }
+async function saveDownload(obj, name='data.json'){ const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
+function renderJornadas(data){ const list=document.getElementById('jornadasList'); list.innerHTML=''; (data.jornadas||[]).forEach((j,i)=>{ const div=document.createElement('div'); div.className='card'; div.style.marginBottom='8px'; div.innerHTML='<strong>Jornada '+j.id+'</strong> - partidos: '+(j.matches.length || 0)+' <button data-i="'+i+'" class="btn" style="margin-left:8px">Editar</button>'; list.appendChild(div); }); document.querySelectorAll('#jornadasList .btn').forEach(b=>b.addEventListener('click', e=>{ const idx=+e.target.dataset.i; editJornada(idx); })); }
+async function editJornada(idx){ const data=await loadData(); const jornada=data.jornadas[idx]; const panel=document.getElementById('resultsPanel'); panel.innerHTML=''; const table=document.createElement('div'); jornada.matches.forEach((m,mi)=>{ const row=document.createElement('div'); row.style.display='flex'; row.style.gap='8px'; row.style.alignItems='center'; row.style.marginBottom='6px'; row.innerHTML='<div style="width:45%"><strong>'+m.strEvent+'</strong></div><div style="width:30%"><select data-mi="'+mi+'"><option value="">--Resultado--</option><option value="1">1</option><option value="X">X</option><option value="2">2</option></select></div>'; table.appendChild(row); }); const saveBtn=document.createElement('button'); saveBtn.className='btn'; saveBtn.textContent='Guardar resultados'; saveBtn.addEventListener('click', async ()=>{ const selects=table.querySelectorAll('select'); selects.forEach(s=>{ const mi=+s.dataset.mi; const val=s.value; if(val) jornada.results[mi]=val; }); await saveDownload(data); alert('data.json preparado para exportar con resultados'); }); panel.appendChild(table); panel.appendChild(saveBtn); }
+document.getElementById('importApi').addEventListener('click', async ()=>{ const r=document.getElementById('round').value.trim(); if(!r) return alert('Indica número de jornada'); try{ const events=await fetchRound(r); if(events.length===0) return alert('No se encontraron partidos para esa jornada'); const data=await loadData(); const jId = 'J' + r; const matches = events.map(ev=>({id:ev.idEvent,strEvent: ev.strEvent, home:ev.strHomeTeam, away:ev.strAwayTeam, result: null})); data.jornadas = data.jornadas || []; data.jornadas.push({id:jId, matches:matches, results: Array(matches.length).fill(null)}); renderJornadas(data); saveDownload(data); }catch(e){ alert('Error al importar: '+e.message); }});
+document.getElementById('autoCreate').addEventListener('click', async ()=>{ const data=await loadData(); const next = (data.jornadas||[]).length + 1; const matches = Array.from({length:14}).map((_,i)=>({id: 'M'+(i+1), strEvent:'Equipo A vs Equipo B', home:'Equipo A', away:'Equipo B', result:null})); data.jornadas = data.jornadas || []; data.jornadas.push({id:'J'+next, matches:matches, results: Array(14).fill(null)}); renderJornadas(data); saveDownload(data); });
+document.getElementById('calcBtn').addEventListener('click', async ()=>{ const data = await loadData(); const jornadas = data.jornadas || []; if(!jornadas.length) return alert('No hay jornadas'); const j = jornadas[jornadas.length-1]; const players = data.players || []; const res = players.map(p=>{ const pron = (p.pronosticos && p.pronosticos[j.id]) || []; let aciertos=0; for(let i=0;i<j.matches.length;i++){ if(j.results[i] && pron[i] && j.results[i]===pron[i]) aciertos++; } return {name:p.name, displayName:p.displayName || p.name, aciertos:aciertos} }); const counts = {14:0,13:0,12:0,11:0,10:0}; res.forEach(r=>{ if(r.aciertos>=10 && r.aciertos<=14) counts[r.aciertos] = (counts[r.aciertos]||0)+1; }); const clas=document.getElementById('clasificacion'); clas.innerHTML=''; let html='<h4>Resultados Jornada '+j.id+'</h4><table class="table"><tr><th>Jugador</th><th>Aciertos</th></tr>'; res.sort((a,b)=>b.aciertos-a.aciertos).forEach(r=> html += '<tr><td>'+r.displayName+'</td><td>'+r.aciertos+'</td></tr>'); html += '</table><h4>Clasificación 14/13/12/11/10</h4><ul>'; [14,13,12,11,10].forEach(n=> html+='<li>'+n+': '+(counts[n]||0)+'</li>'); html += '</ul>'; clas.innerHTML = html; });
+(async ()=>{ const data=await loadData(); renderJornadas(data); })();
+document.getElementById('menuBtn').addEventListener('click', ()=>{ document.getElementById('sidebar').classList.toggle('open'); });
+</script>
+</body></html>
