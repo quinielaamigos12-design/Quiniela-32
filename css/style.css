@@ -1,1 +1,44 @@
-body { font-family: Arial; }
+
+.inicio-container {
+    background: url('img/futbol_bg.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inicio-overlay {
+    background: rgba(0,0,0,0.55);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.inicio-title {
+    color: white;
+    font-size: 42px;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+}
+
+.btn-jugador, .btn-admin {
+    display: block;
+    width: 250px;
+    padding: 18px;
+    margin: 15px auto;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-jugador { background: #0B6CF0; }
+.btn-admin { background: #E53935; }
+
+.btn-jugador:hover, .btn-admin:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+}
