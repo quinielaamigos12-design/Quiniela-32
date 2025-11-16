@@ -1,78 +1,45 @@
-
-// jugador.js - player area: select jornada, input pronostics, export for admin
-(async function(){
+async function loadData(){
+  try{ return await fetch('data.json',{cache:'no-store'}).then(r=>r.json()); }catch(e){ return {players:[]}; }
+}
+function getQuery(name){ const params = new URLSearchParams(window.location.search); return params.get(name); }
+async function render(){
   const data = await loadData();
-  const url = new URL(window.location.href);
-  const user = sessionStorage.getItem('session') || url.searchParams.get('user');
-  if(!user){ window.location.href='index.html'; return; }
-  document.getElementById('playerName').textContent = user;
-
-  const selectJornada = document.getElementById('selectJornada');
-  const partidosArea = document.getElementById('partidosArea');
-  const savePron = document.getElementById('savePron');
-  const showAll = document.getElementById('showAll');
-  const allPron = document.getElementById('allPron');
-  const btnLogout = document.getElementById('btnLogout');
-
-  function renderJornadas(){
-    selectJornada.innerHTML = '';
-    data.jornadas.forEach(j=>{
-      const opt = document.createElement('option');
-      opt.value = j.id;
-      opt.textContent = `Jornada ${j.id} ${j.published ? '(Resultados publicados)':''}`;
-      selectJornada.appendChild(opt);
-    });
-    if(data.jornadas.length===0) selectJornada.innerHTML = '<option value="">No hay jornadas</option>';
-    renderPartidos();
-  }
-
-  function renderPartidos(){
-    partidosArea.innerHTML = '';
-    const jid = Number(selectJornada.value);
-    const j = data.jornadas.find(x=>x.id===jid);
-    if(!j){ partidosArea.innerHTML='Selecciona una jornada'; return; }
-    j.partidos.forEach((p,i)=>{
-      const val = (j.pronosticos && j.pronosticos[user]) ? (j.pronosticos[user][i]||'') : '';
-      const div = document.createElement('div');
-      div.innerHTML = `${i+1}. ${p.local} vs ${p.visitante} — <select id="sel_${i}"><option value="">--</option><option value="1">1</option><option value="X">X</option><option value="2">2</option></select>`;
-      partidosArea.appendChild(div);
-      if(val) document.getElementById('sel_'+i).value = val;
-    });
-  }
-
-  selectJornada.addEventListener('change', renderPartidos);
-
-  savePron.addEventListener('click', ()=>{
-    const jid = Number(selectJornada.value);
-    const j = data.jornadas.find(x=>x.id===jid);
-    if(!j) return alert('Selecciona jornada');
-    const lista = [];
-    for(let i=0;i<j.partidos.length;i++){
-      const v = document.getElementById('sel_'+i).value || '';
-      lista.push(v);
+  const list = document.getElementById('playerList');
+  list.innerHTML='';
+  (data.players||[]).forEach((p,i)=>{
+    const div = document.createElement('div'); div.className='player-item';
+    div.innerHTML = '<div class="left"><div class="badge">'+(i+1)+'</div><div><strong>'+p.displayName+'</strong><div class="small-muted">'+p.name+'</div></div></div><div class="small-muted">'+(p.email||'')+'</div>';
+    list.appendChild(div);
+  });
+  // populate profile if logged
+  const session = sessionStorage.getItem('session') || getQuery('user');
+  if(session){
+    const me = (data.players||[]).find(x => x.name===session) || (session==='MIGI' ? {name:'MIGI',displayName:'MIGI',email:''} : null);
+    if(me){
+      document.getElementById('displayName').value = me.displayName || me.name;
+      document.getElementById('email').value = me.email || '';
     }
-    if(!j.pronosticos) j.pronosticos = {};
-    j.pronosticos[user] = lista;
-    alert('Pronósticos guardados en memoria. Pide al admin que exporte data.json para compartirlos con todos.');
-  });
-
-  showAll.addEventListener('click', ()=>{
-    const jid = Number(selectJornada.value);
-    const j = data.jornadas.find(x=>x.id===jid);
-    if(!j) return alert('Selecciona jornada');
-    const pron = j.pronosticos || {};
-    let out = '';
-    Object.keys(pron).forEach(player=>{
-      out += player + ': ' + JSON.stringify(pron[player]) + '\\n';
-    });
-    allPron.textContent = out || 'No hay pronósticos';
-  });
-
-  btnLogout.addEventListener('click', ()=>{
-    sessionStorage.removeItem('session');
-    window.location.href='index.html';
-  });
-
-  renderJornadas();
-
-})();
+  }
+}
+document.getElementById('saveProfile').addEventListener('click', async ()=>{
+  const data = await loadData();
+  const session = sessionStorage.getItem('session');
+  if(!session) return alert('No estás identificado');
+  const idx = (data.players||[]).findIndex(x=>x.name===session);
+  const displayName = document.getElementById('displayName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(idx===-1){
+    // if not found, add (for fixed MIGI)
+    data.players = data.players || [];
+    data.players.push({name:session,password:'',displayName:displayName,email:email});
+  }else{
+    data.players[idx].displayName = displayName;
+    data.players[idx].email = email;
+  }
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download='data.json'; document.body.appendChild(a); a.click(); a.remove();
+  document.getElementById('status').textContent = 'Datos preparados para exportar (descarga data.json)';
+  await render();
+});
+document.addEventListener('DOMContentLoaded', render);

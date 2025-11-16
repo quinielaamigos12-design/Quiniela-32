@@ -1,203 +1,193 @@
 {
   "meta": {
-    "name": "Quiniela 32",
-    "league": "LaLiga (España)",
-    "season": "2024/2025",
-    "matches_per_jornada": 14
+    "name": "Quiniela 32"
   },
   "players": [
     {
-      "id": 1,
-      "name": "Jugador 1",
-      "active": true,
-      "password": "pass1234"
+      "name": "ADRIAN",
+      "password": "ADRIAN1",
+      "displayName": "ADRIAN",
+      "email": ""
     },
     {
-      "id": 2,
-      "name": "Jugador 2",
-      "active": true,
-      "password": "pass1234"
+      "name": "ALBERTO",
+      "password": "ALBERTO2",
+      "displayName": "ALBERTO",
+      "email": ""
     },
     {
-      "id": 3,
-      "name": "Jugador 3",
-      "active": true,
-      "password": "pass1234"
+      "name": "ALONSO",
+      "password": "ALONSO3",
+      "displayName": "ALONSO",
+      "email": ""
     },
     {
-      "id": 4,
-      "name": "Jugador 4",
-      "active": true,
-      "password": "pass1234"
+      "name": "ANDRES",
+      "password": "ANDRES4",
+      "displayName": "ANDRES",
+      "email": ""
     },
     {
-      "id": 5,
-      "name": "Jugador 5",
-      "active": true,
-      "password": "pass1234"
+      "name": "ABELARDO",
+      "password": "ABELARDO5",
+      "displayName": "ABELARDO",
+      "email": ""
     },
     {
-      "id": 6,
-      "name": "Jugador 6",
-      "active": true,
-      "password": "pass1234"
+      "name": "ANTONIO GA",
+      "password": "ANTONIOGA6",
+      "displayName": "ANTONIO GA",
+      "email": ""
     },
     {
-      "id": 7,
-      "name": "Jugador 7",
-      "active": true,
-      "password": "pass1234"
+      "name": "BARTOLO",
+      "password": "BARTOLO7",
+      "displayName": "BARTOLO",
+      "email": ""
     },
     {
-      "id": 8,
-      "name": "Jugador 8",
-      "active": true,
-      "password": "pass1234"
+      "name": "CARLOS",
+      "password": "CARLOS8",
+      "displayName": "CARLOS",
+      "email": ""
     },
     {
-      "id": 9,
-      "name": "Jugador 9",
-      "active": true,
-      "password": "pass1234"
+      "name": "JAVI",
+      "password": "JAVI10",
+      "displayName": "JAVI",
+      "email": ""
     },
     {
-      "id": 10,
-      "name": "Jugador 10",
-      "active": true,
-      "password": "pass1234"
+      "name": "JESUS",
+      "password": "JESUS11",
+      "displayName": "JESUS",
+      "email": ""
     },
     {
-      "id": 11,
-      "name": "Jugador 11",
-      "active": true,
-      "password": "pass1234"
+      "name": "MANOLO",
+      "password": "MANOLO12",
+      "displayName": "MANOLO",
+      "email": ""
     },
     {
-      "id": 12,
-      "name": "Jugador 12",
-      "active": true,
-      "password": "pass1234"
+      "name": "RAFA",
+      "password": "RAFA13",
+      "displayName": "RAFA",
+      "email": ""
     },
     {
-      "id": 13,
-      "name": "Jugador 13",
-      "active": true,
-      "password": "pass1234"
+      "name": "SOUSA",
+      "password": "SOUSA14",
+      "displayName": "SOUSA",
+      "email": ""
     },
     {
-      "id": 14,
-      "name": "Jugador 14",
-      "active": true,
-      "password": "pass1234"
+      "name": "JUAN",
+      "password": "JUAN15",
+      "displayName": "JUAN",
+      "email": ""
     },
     {
-      "id": 15,
-      "name": "Jugador 15",
-      "active": true,
-      "password": "pass1234"
+      "name": "JON",
+      "password": "JON16",
+      "displayName": "JON",
+      "email": ""
     },
     {
-      "id": 16,
-      "name": "Jugador 16",
-      "active": true,
-      "password": "pass1234"
+      "name": "JULIO",
+      "password": "JULIO17",
+      "displayName": "JULIO",
+      "email": ""
     },
     {
-      "id": 17,
-      "name": "Jugador 17",
-      "active": true,
-      "password": "pass1234"
+      "name": "GERRADO",
+      "password": "GERRADO18",
+      "displayName": "GERRADO",
+      "email": ""
     },
     {
-      "id": 18,
-      "name": "Jugador 18",
-      "active": true,
-      "password": "pass1234"
+      "name": "ANDONI",
+      "password": "ANDONI19",
+      "displayName": "ANDONI",
+      "email": ""
     },
     {
-      "id": 19,
-      "name": "Jugador 19",
-      "active": true,
-      "password": "pass1234"
+      "name": "ALEX",
+      "password": "ALEX20",
+      "displayName": "ALEX",
+      "email": ""
     },
     {
-      "id": 20,
-      "name": "Jugador 20",
-      "active": true,
-      "password": "pass1234"
+      "name": "LOPEZ",
+      "password": "LOPEZ21",
+      "displayName": "LOPEZ",
+      "email": ""
     },
     {
-      "id": 21,
-      "name": "Jugador 21",
-      "active": true,
-      "password": "pass1234"
+      "name": "FRAN",
+      "password": "FRAN22",
+      "displayName": "FRAN",
+      "email": ""
     },
     {
-      "id": 22,
-      "name": "Jugador 22",
-      "active": true,
-      "password": "pass1234"
+      "name": "MIGUI",
+      "password": "MIGUI23",
+      "displayName": "MIGUI",
+      "email": ""
     },
     {
-      "id": 23,
-      "name": "Jugador 23",
-      "active": true,
-      "password": "pass1234"
+      "name": "ARANDA",
+      "password": "ARANDA24",
+      "displayName": "ARANDA",
+      "email": ""
     },
     {
-      "id": 24,
-      "name": "Jugador 24",
-      "active": true,
-      "password": "pass1234"
+      "name": "FRAN CUR",
+      "password": "FRANCUR25",
+      "displayName": "FRAN CUR",
+      "email": ""
     },
     {
-      "id": 25,
-      "name": "Jugador 25",
-      "active": true,
-      "password": "pass1234"
+      "name": "CARLOS FER",
+      "password": "CARLOSFER26",
+      "displayName": "CARLOS FER",
+      "email": ""
     },
     {
-      "id": 26,
-      "name": "Jugador 26",
-      "active": true,
-      "password": "pass1234"
+      "name": "RAMON",
+      "password": "RAMON27",
+      "displayName": "RAMON",
+      "email": ""
     },
     {
-      "id": 27,
-      "name": "Jugador 27",
-      "active": true,
-      "password": "pass1234"
+      "name": "JUAN A",
+      "password": "JUAN A28",
+      "displayName": "JUAN A",
+      "email": ""
     },
     {
-      "id": 28,
-      "name": "Jugador 28",
-      "active": true,
-      "password": "pass1234"
+      "name": "SAMUEL",
+      "password": "SAMUEL29",
+      "displayName": "SAMUEL",
+      "email": ""
     },
     {
-      "id": 29,
-      "name": "Jugador 29",
-      "active": true,
-      "password": "pass1234"
+      "name": "DOMINGUEZ",
+      "password": "DOMINGUEZ30",
+      "displayName": "DOMINGUEZ",
+      "email": ""
     },
     {
-      "id": 30,
-      "name": "Jugador 30",
-      "active": true,
-      "password": "pass1234"
+      "name": "DAVID LUNITA",
+      "password": "DAVIDLUNITA31",
+      "displayName": "DAVID LUNITA",
+      "email": ""
     },
     {
-      "id": 31,
-      "name": "Jugador 31",
-      "active": true,
-      "password": "pass1234"
-    },
-    {
-      "id": 32,
-      "name": "Jugador 32",
-      "active": true,
-      "password": "pass1234"
+      "name": "CRISTIAN",
+      "password": "CRISTIAN32",
+      "displayName": "CRISTIAN",
+      "email": ""
     }
-  ],
-  "jornadas": []
+  ]
 }

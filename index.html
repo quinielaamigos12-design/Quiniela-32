@@ -1,46 +1,39 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Quiniela 32 - Login</title>
-<style>
-body { font-family: Arial; background:#e9edf0; padding:40px; }
-.container { background:white; padding:25px; max-width:420px; margin:auto; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.15); }
-input { width:100%; padding:11px; margin:8px 0; border-radius:6px; border:1px solid #aaa; }
-button { padding:10px; border:none; background:#007bff; color:white; border-radius:6px; cursor:pointer; font-size:16px; }
-button:hover { background:#005fcc; }
-.eye-btn { width:50px; margin-left:6px; background:#444; }
-.eye-btn:hover { background:#222; }
-.row { display:flex; }
-#msg { color:red; margin-top:10px; }
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Quiniela 32 — Login</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="container">
-<h2>Iniciar sesión</h2>
+<div style="display:flex;min-height:100vh;">
+  <div class="sidebar">
+    <h2>Quiniela 32</h2>
+    <p class="small-muted">App privada - data.json</p>
+    <a class="active" href="#">Iniciar sesión</a>
+    <a href="index.html">Ayuda</a>
+  </div>
 
-<label>Nombre</label>
-<input id="user" type="text">
-
-<label>Contraseña</label>
-<div class="row">
-<input id="pass" type="password" style="flex:1;">
-<button type="button" class="eye-btn" onclick="togglePass()">👁</button>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+    <div class="card" style="width:420px;">
+      <h3>Accede a tu cuenta</h3>
+      <div class="form-group">
+        <label>Usuario</label>
+        <input id="user" type="text" />
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input id="pass" type="password" />
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button id="loginBtn" class="btn">Entrar</button>
+        <div id="msg" class="small-muted"></div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<button id="loginBtn">Entrar</button>
-
-<div id="msg"></div>
 
 <script src="auth.js"></script>
-
-<script>
-function togglePass(){
-  const p=document.getElementById('pass');
-  p.type = p.type === 'password' ? 'text' : 'password';
-}
-</script>
-
-</div>
 </body>
 </html>
