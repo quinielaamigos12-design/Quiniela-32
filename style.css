@@ -1,8 +1,22 @@
-body{font-family:sans-serif;background:#f2f2f2;}
-.center-box{text-align:center;margin-top:80px;}
-button{width:220px;padding:12px;margin:10px;font-size:18px;border-radius:8px;}
-.card{background:white;padding:20px;border-radius:12px;max-width:350px;margin:60px auto;}
-.tabla-pronosticos{width:100%;border-collapse:collapse;}
-.tabla-pronosticos th{background:#333;color:white;padding:6px;}
-.tabla-pronosticos td{border:1px solid #ccc;padding:4px;text-align:center;}
-.tabla-pronosticos input{width:40px;text-align:center;}
+
+body{font-family:Arial,Helvetica,sans-serif;background:#f6f7fb;margin:0;color:#222;}
+.container{max-width:980px;margin:24px auto;padding:0 12px;}
+.header{background:#0b6cf0;color:#fff;padding:18px 16px;border-radius:8px;margin-bottom:16px}
+.header h1{margin:0;font-size:20px}
+.accordion{background:#fff;border-radius:8px;padding:8px;box-shadow:0 2px 6px rgba(0,0,0,0.06);margin-bottom:12px;overflow:hidden}
+.accordion .head{display:flex;justify-content:space-between;align-items:center;padding:14px 12px;cursor:pointer}
+.accordion .head h3{margin:0;font-size:16px}
+.accordion .head .date{color:#666;font-size:13px}
+.accordion .body{display:none;padding:12px;border-top:1px solid #eee;background:linear-gradient(180deg,#fff,#fcfdff)}
+.partidos-list{margin:8px 0 12px 0;padding:0;list-style:none}
+.partidos-list li{padding:6px 0;border-bottom:1px dashed #f0f0f0}
+.partidos-list li:last-child{border-bottom:none}
+.table-wrap{overflow:auto;margin-top:8px}
+.matriz{border-collapse:collapse;width:100%;min-width:720px}
+.matriz th{background:#0b6cf0;color:#fff;padding:8px;font-weight:600;position:sticky;top:0}
+.matriz td{border:1px solid #e9eef8;padding:6px;text-align:center}
+.player-name{position:sticky;left:0;background:#fff;text-align:left;padding-left:8px;font-weight:600}
+.small{font-size:13px;color:#555}
+.toggle-icon{font-size:18px;color:#0b6cf0}
+.search-row{display:flex;gap:8px;align-items:center;margin:12px 0}
+.search-row input{flex:1;padding:8px;border-radius:8px;border:1px solid #ddd}
