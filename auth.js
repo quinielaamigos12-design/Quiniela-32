@@ -1,4 +1,15 @@
 
+document.addEventListener("DOMContentLoaded", ()=>{
+ const tp=document.getElementById("togglePassword");
+ const pass=document.getElementById("password");
+ if(tp&&pass){
+   tp.addEventListener("click", ()=>{
+     pass.type = pass.type === "password" ? "text" : "password";
+   });
+ }
+});
+
+
 const FIXED_ADMIN_USER='admin', FIXED_ADMIN_PASS='admin1234', FIXED_PLAYER_USER='MIGI', FIXED_PLAYER_PASS='MIGUI23';
 let APP_DATA=null;
 async function loadData(){ if(APP_DATA) return APP_DATA; try{ const res=await fetch('data.json',{cache:'no-store'}); APP_DATA=await res.json(); }catch(e){ APP_DATA={meta:{name:'Quiniela 32'},players:[],jornadas:[]}; } return APP_DATA; }

@@ -1,1 +1,57 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"/></head><body><script>location.href='jugador.html';</script></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><title>Perfil</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><div class="site-title">Quiniela 32 - Perfil</div></div>
+<div style="max-width:720px;margin:20px auto;">
+  <div class="card">
+    <h3>Perfil de usuario</h3>
+    <div style="margin-top:10px">
+      <label>Usuario (no editable)</label>
+      <input type="text" id="perfilUser" disabled>
+    </div>
+    <div style="margin-top:10px">
+      <label>Nombre</label>
+      <input type="text" id="perfilName" placeholder="Tu nombre">
+    </div>
+    <div style="margin-top:10px">
+      <label>Correo electrónico</label>
+      <input type="email" id="perfilEmail" placeholder="tu@correo.com">
+    </div>
+    <div style="margin-top:12px">
+      <button id="savePerfil">Guardar cambios</button>
+      <button id="resetPerfil" class="secondary" style="margin-left:8px">Restablecer</button>
+      <div id="msg" class="small" style="margin-top:8px"></div>
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Simulate current logged user; try to read from sessionStorage set by auth.js
+  const current = sessionStorage.getItem('currentUser') || localStorage.getItem('lastLoginUser') || '';
+  document.getElementById('perfilUser').value = current;
+  const overrides = JSON.parse(localStorage.getItem('user_overrides')||'{}');
+  if(current && overrides[current]){
+    document.getElementById('perfilName').value = overrides[current].name||'';
+    document.getElementById('perfilEmail').value = overrides[current].email||'';
+  }
+  document.getElementById('savePerfil').addEventListener('click', ()=>{
+    const name = document.getElementById('perfilName').value.trim();
+    const email = document.getElementById('perfilEmail').value.trim();
+    if(!current){
+      return alert('No hay usuario identificado. Inicia sesión primero.');
+    }
+    const ov = JSON.parse(localStorage.getItem('user_overrides')||'{}');
+    ov[current] = ov[current]||{};
+    ov[current].name = name;
+    ov[current].email = email;
+    localStorage.setItem('user_overrides', JSON.stringify(ov));
+    document.getElementById('msg').textContent = 'Guardado localmente. Los administradores verán los cambios si importan o revisan overrides.';
+  });
+  document.getElementById('resetPerfil').addEventListener('click', ()=>{
+    const ov = JSON.parse(localStorage.getItem('user_overrides')||'{}');
+    delete ov[current];
+    localStorage.setItem('user_overrides', JSON.stringify(ov));
+    document.getElementById('perfilName').value='';document.getElementById('perfilEmail').value='';
+    document.getElementById('msg').textContent='Restablecido.';
+  });
+});
+</script>
+</body></html>
