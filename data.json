@@ -1,4 +1,229 @@
 {
-  "players": [],
-  "jornadas": []
+  "season": "2025-2026",
+  "players": [
+    {
+      "username": "ADRIAN",
+      "name": "ADRIAN",
+      "password": "ADRIAN1",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ALBERTO",
+      "name": "ALBERTO",
+      "password": "ALBERTO2",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ALONSO",
+      "name": "ALONSO",
+      "password": "ALONSO3",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ANDRES",
+      "name": "ANDRES",
+      "password": "ANDRES4",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ABELARDO",
+      "name": "ABELARDO",
+      "password": "ABELARDO5",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ANTONIO GA",
+      "name": "ANTONIO GA",
+      "password": "ANTONIOGA6",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "BARTOLO",
+      "name": "BARTOLO",
+      "password": "BARTOLO7",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "CARLOS",
+      "name": "CARLOS",
+      "password": "CARLOS8",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "JAVI",
+      "name": "JAVI",
+      "password": "JAVI10",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "JESUS",
+      "name": "JESUS",
+      "password": "JESUS11",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "MANOLO",
+      "name": "MANOLO",
+      "password": "MANOLO12",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "RAFA",
+      "name": "RAFA",
+      "password": "RAFA13",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "SOUSA",
+      "name": "SOUSA",
+      "password": "SOUSA14",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "JUAN",
+      "name": "JUAN",
+      "password": "JUAN15",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "JON",
+      "name": "JON",
+      "password": "JON16",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "JULIO",
+      "name": "JULIO",
+      "password": "JULIO17",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "GERRADO",
+      "name": "GERRADO",
+      "password": "GERRADO18",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ANDONI",
+      "name": "ANDONI",
+      "password": "ANDONI19",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ALEX",
+      "name": "ALEX",
+      "password": "ALEX20",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "LOPEZ",
+      "name": "LOPEZ",
+      "password": "LOPEZ21",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "FRAN",
+      "name": "FRAN",
+      "password": "FRAN22",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "MIGUI",
+      "name": "MIGUI",
+      "password": "MIGUI23",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "ARANDA",
+      "name": "ARANDA",
+      "password": "ARANDA24",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "FRAN CUR",
+      "name": "FRAN CUR",
+      "password": "FRANCUR25",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "CARLOS FER",
+      "name": "CARLOS FER",
+      "password": "CARLOSFER26",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "RAMON",
+      "name": "RAMON",
+      "password": "RAMON27",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "JUAN A",
+      "name": "JUAN A",
+      "password": "JUANA28",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "SAMUEL",
+      "name": "SAMUEL",
+      "password": "SAMUEL29",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "DOMINGUEZ",
+      "name": "DOMINGUEZ",
+      "password": "DOMINGUEZ30",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "DAVID LUNITA",
+      "name": "DAVID LUNITA",
+      "password": "DAVIDLUNITA31",
+      "saldo": 50,
+      "email": ""
+    },
+    {
+      "username": "CRISTIAN",
+      "name": "CRISTIAN",
+      "password": "CRISTIAN32",
+      "saldo": 50,
+      "email": ""
+    }
+  ],
+  "pronosticos": {},
+  "jornadas": [],
+  "closure": {
+    "weekday": 4,
+    "hour": 16,
+    "minute": 0
+  }
 }
