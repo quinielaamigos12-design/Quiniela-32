@@ -7,187 +7,249 @@
       "name": "ADRIAN",
       "password": "ADRIAN1",
       "displayName": "ADRIAN",
-      "email": ""
+      "email": "",
+      "username": "ADRIAN",
+      "saldo": 50
     },
     {
       "name": "ALBERTO",
       "password": "ALBERTO2",
       "displayName": "ALBERTO",
-      "email": ""
+      "email": "",
+      "username": "ALBERTO",
+      "saldo": 50
     },
     {
       "name": "ALONSO",
       "password": "ALONSO3",
       "displayName": "ALONSO",
-      "email": ""
+      "email": "",
+      "username": "ALONSO",
+      "saldo": 50
     },
     {
       "name": "ANDRES",
       "password": "ANDRES4",
       "displayName": "ANDRES",
-      "email": ""
+      "email": "",
+      "username": "ANDRES",
+      "saldo": 50
     },
     {
       "name": "ABELARDO",
       "password": "ABELARDO5",
       "displayName": "ABELARDO",
-      "email": ""
+      "email": "",
+      "username": "ABELARDO",
+      "saldo": 50
     },
     {
       "name": "ANTONIO GA",
       "password": "ANTONIOGA6",
       "displayName": "ANTONIO GA",
-      "email": ""
+      "email": "",
+      "username": "ANTONIO",
+      "saldo": 50
     },
     {
       "name": "BARTOLO",
       "password": "BARTOLO7",
       "displayName": "BARTOLO",
-      "email": ""
+      "email": "",
+      "username": "BARTOLO",
+      "saldo": 50
     },
     {
       "name": "CARLOS",
       "password": "CARLOS8",
       "displayName": "CARLOS",
-      "email": ""
+      "email": "",
+      "username": "CARLOS",
+      "saldo": 50
     },
     {
       "name": "JAVI",
       "password": "JAVI10",
       "displayName": "JAVI",
-      "email": ""
+      "email": "",
+      "username": "JAVI",
+      "saldo": 50
     },
     {
       "name": "JESUS",
       "password": "JESUS11",
       "displayName": "JESUS",
-      "email": ""
+      "email": "",
+      "username": "JESUS",
+      "saldo": 50
     },
     {
       "name": "MANOLO",
       "password": "MANOLO12",
       "displayName": "MANOLO",
-      "email": ""
+      "email": "",
+      "username": "MANOLO",
+      "saldo": 50
     },
     {
       "name": "RAFA",
       "password": "RAFA13",
       "displayName": "RAFA",
-      "email": ""
+      "email": "",
+      "username": "RAFA",
+      "saldo": 50
     },
     {
       "name": "SOUSA",
       "password": "SOUSA14",
       "displayName": "SOUSA",
-      "email": ""
+      "email": "",
+      "username": "SOUSA",
+      "saldo": 50
     },
     {
       "name": "JUAN",
       "password": "JUAN15",
       "displayName": "JUAN",
-      "email": ""
+      "email": "",
+      "username": "JUAN",
+      "saldo": 50
     },
     {
       "name": "JON",
       "password": "JON16",
       "displayName": "JON",
-      "email": ""
+      "email": "",
+      "username": "JON",
+      "saldo": 50
     },
     {
       "name": "JULIO",
       "password": "JULIO17",
       "displayName": "JULIO",
-      "email": ""
+      "email": "",
+      "username": "JULIO",
+      "saldo": 50
     },
     {
       "name": "GERRADO",
       "password": "GERRADO18",
       "displayName": "GERRADO",
-      "email": ""
+      "email": "",
+      "username": "GERRADO",
+      "saldo": 50
     },
     {
       "name": "ANDONI",
       "password": "ANDONI19",
       "displayName": "ANDONI",
-      "email": ""
+      "email": "",
+      "username": "ANDONI",
+      "saldo": 50
     },
     {
       "name": "ALEX",
       "password": "ALEX20",
       "displayName": "ALEX",
-      "email": ""
+      "email": "",
+      "username": "ALEX",
+      "saldo": 50
     },
     {
       "name": "LOPEZ",
       "password": "LOPEZ21",
       "displayName": "LOPEZ",
-      "email": ""
+      "email": "",
+      "username": "LOPEZ",
+      "saldo": 50
     },
     {
       "name": "FRAN",
       "password": "FRAN22",
       "displayName": "FRAN",
-      "email": ""
+      "email": "",
+      "username": "FRAN",
+      "saldo": 50
     },
     {
       "name": "MIGUI",
       "password": "MIGUI23",
       "displayName": "MIGUI",
-      "email": ""
+      "email": "",
+      "username": "MIGUI",
+      "saldo": 50
     },
     {
       "name": "ARANDA",
       "password": "ARANDA24",
       "displayName": "ARANDA",
-      "email": ""
+      "email": "",
+      "username": "ARANDA",
+      "saldo": 50
     },
     {
       "name": "FRAN CUR",
       "password": "FRANCUR25",
       "displayName": "FRAN CUR",
-      "email": ""
+      "email": "",
+      "username": "FRAN",
+      "saldo": 50
     },
     {
       "name": "CARLOS FER",
       "password": "CARLOSFER26",
       "displayName": "CARLOS FER",
-      "email": ""
+      "email": "",
+      "username": "CARLOS",
+      "saldo": 50
     },
     {
       "name": "RAMON",
       "password": "RAMON27",
       "displayName": "RAMON",
-      "email": ""
+      "email": "",
+      "username": "RAMON",
+      "saldo": 50
     },
     {
       "name": "JUAN A",
       "password": "JUAN A28",
       "displayName": "JUAN A",
-      "email": ""
+      "email": "",
+      "username": "JUAN",
+      "saldo": 50
     },
     {
       "name": "SAMUEL",
       "password": "SAMUEL29",
       "displayName": "SAMUEL",
-      "email": ""
+      "email": "",
+      "username": "SAMUEL",
+      "saldo": 50
     },
     {
       "name": "DOMINGUEZ",
       "password": "DOMINGUEZ30",
       "displayName": "DOMINGUEZ",
-      "email": ""
+      "email": "",
+      "username": "DOMINGUEZ",
+      "saldo": 50
     },
     {
       "name": "DAVID LUNITA",
       "password": "DAVIDLUNITA31",
       "displayName": "DAVID LUNITA",
-      "email": ""
+      "email": "",
+      "username": "DAVID",
+      "saldo": 50
     },
     {
       "name": "CRISTIAN",
       "password": "CRISTIAN32",
       "displayName": "CRISTIAN",
-      "email": ""
+      "email": "",
+      "username": "CRISTIAN",
+      "saldo": 50
     }
   ],
   "jornadas": []

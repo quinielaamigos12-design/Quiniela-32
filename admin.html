@@ -5,6 +5,21 @@
   <main class="content">
     <div class="card"><h3>Importar jornada desde API (ThesportsDB)</h3>
 <div class="card" style="margin-top:12px">
+  <h4>Procesar descuentos semanales</h4>
+  <div class="small">Pega aquí las líneas con "USUARIO aciertos" (por ejemplo: ADRIAN 5)</div>
+  <textarea id="aciertosArea" style="width:100%;min-height:110px;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:8px"></textarea>
+  <div style="margin-top:8px">
+    <label>Jornada / Semana: <input type="text" id="semanaLabel" placeholder="jornada1" style="padding:6px;border-radius:8px;border:1px solid #e6e9ef"></label>
+  </div>
+  <div style="margin-top:8px">
+    <button id="procesarBtn">Aplicar descuentos semana</button>
+    <button id="exportDataBtn" class="secondary" style="margin-left:8px">Exportar data.json</button>
+    <button id="exportHistBtn" class="secondary" style="margin-left:8px">Descargar historial</button>
+  </div>
+  <div id="procMsg" class="small" style="margin-top:8px"></div>
+</div>
+
+<div class="card" style="margin-top:12px">
   <h4>Importar usuarios (pega líneas: numero nombre contraseña)</h4>
   <textarea id="importArea" style="width:100%;min-height:90px;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></textarea>
   <div style="margin-top:8px"><button id="importBtn">Importar</button></div>

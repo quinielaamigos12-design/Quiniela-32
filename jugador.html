@@ -3,7 +3,26 @@
 <div class="container-main">
   <nav class="sidebar" id="sidebar"><a href="jugador.html" class="active">Jugar</a><a href="perfil.html">Mi Perfil</a><a href="index.html">Salir</a></nav>
   <main class="content">
-    <div class="card"><label>Selecciona jornada:</label><select id="selJ"></select></div>
+    <div class="card">
+  <div id="saldoDisplay" style="margin-top:10px;font-weight:600">Saldo actual: <span id="saldoValue">-</span> €</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const current = sessionStorage.getItem('currentUser') || localStorage.getItem('lastLoginUser') || '';
+      if(!current) return;
+      // try to get player from localStorage players first
+      const stored = JSON.parse(localStorage.getItem('app_players')||'[]');
+      let p = stored.find(x=>x.username && x.username.toUpperCase()===current.toUpperCase());
+      if(!p){
+        fetch('data.json').then(r=>r.json()).then(d=>{
+          const bp = (d.players||[]).find(x=>x.username && x.username.toUpperCase()===current.toUpperCase());
+          if(bp) document.getElementById('saldoValue').textContent = (typeof bp.saldo!=='undefined'? bp.saldo : 50);
+        });
+      } else {
+        document.getElementById('saldoValue').textContent = (typeof p.saldo!=='undefined'? p.saldo : 50);
+      }
+    });
+  </script>
+<label>Selecciona jornada:</label><select id="selJ"></select></div>
     <div class="player-layout">
       <div class="player-list card" id="matchesList"></div>
       <div class="card">
