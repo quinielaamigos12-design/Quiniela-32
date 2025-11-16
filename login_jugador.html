@@ -1,13 +1,35 @@
-<!doctype html><html><head><meta charset='utf-8'/>
-<title>Login Jugador</title><link rel='stylesheet' href='style.css'></head>
-<body>
-<div class='card'>
-<h2>Login Jugador</h2>
-<label>Usuario</label><input id='user'>
-<label>Contraseña</label><input type='password' id='pass'>
-<button id='loginBtn'>Entrar</button>
-<div id='msg'></div>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Jugador</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="login-bg">
+<div class="login-card">
+  <h2 class="title">Quiniela 32</h2>
+  <h3 class="subtitle">Acceso Jugador</h3>
+
+  <form id="loginJugadorForm">
+    <div class="input-group">
+      <label>Usuario</label>
+      <div class="input-icon">👤</div>
+      <input type="text" id="jugadorUser" required>
+    </div>
+
+    <div class="input-group">
+      <label>Contraseña</label>
+      <div class="input-icon">🔒</div>
+      <input type="password" id="jugadorPass" required>
+      <span class="eye" onclick="toggleJugadorPass()">👁</span>
+    </div>
+
+    <div id="loginJugadorError" class="error-msg"></div>
+
+    <button class="btn-red" type="submit">Entrar</button>
+  </form>
 </div>
-<script src='auth.js'></script>
-<script>document.getElementById('loginBtn').onclick=()=>authLoginPlayer(user.value,pass.value);</script>
-</body></html>
+<script src="auth.js"></script>
+</body>
+</html>

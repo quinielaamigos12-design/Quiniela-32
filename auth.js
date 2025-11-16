@@ -1,4 +1,4 @@
-// LOGIN JUGADOR
+
 document.getElementById("loginJugadorForm")?.addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -8,9 +8,7 @@ document.getElementById("loginJugadorForm")?.addEventListener("submit", function
     fetch("data.json")
         .then(res => res.json())
         .then(data => {
-            const players = data.players;
-
-            const found = players.find(p =>
+            const found = data.players.find(p =>
                 p.username.toUpperCase() === user.toUpperCase() &&
                 p.password === pass
             );
@@ -26,7 +24,6 @@ document.getElementById("loginJugadorForm")?.addEventListener("submit", function
         });
 });
 
-// MOSTRAR / OCULTAR CONTRASEÑA
 function toggleJugadorPass() {
     const input = document.getElementById("jugadorPass");
     input.type = input.type === "password" ? "text" : "password";
