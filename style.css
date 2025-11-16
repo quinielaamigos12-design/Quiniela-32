@@ -120,3 +120,14 @@ button.secondary{
 /* jornadas card tweaks */
 .card h4, .card h5 { margin:0 0 8px 0; }
 table.user-table td, table.user-table th { vertical-align: middle; }
+
+
+/* Matriz de pronósticos: scroll horizontal y compacto */
+.matriz-wrapper{overflow:auto; width:100%; margin-top:10px; background:transparent;}
+.matriz-table{border-collapse:collapse; width:max-content; min-width:100%; font-size:13px;}
+.matriz-table th, .matriz-table td{border:1px solid #e6e9ef;padding:6px 8px;white-space:nowrap;text-align:center;}
+.matriz-table th{background:linear-gradient(90deg,#f3f6ff,#eef4ff);font-weight:700;position:sticky;top:0;z-index:2;}
+.matriz-table td.player-name{position:sticky;left:0;background:#fff;text-align:left;padding-left:10px;font-weight:600;z-index:1;}
+.matriz-table td.pick{font-family:monospace;}
+.matriz-header{overflow:auto;}
+@media (max-width:800px){ .matriz-table th, .matriz-table td{padding:5px 6px;font-size:12px} }

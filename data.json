@@ -44,11 +44,10 @@
       "saldo": 50
     },
     {
+      "username": "ANTONIOGA",
       "name": "ANTONIO GA",
       "password": "ANTONIOGA6",
-      "displayName": "ANTONIO GA",
       "email": "",
-      "username": "ANTONIO",
       "saldo": 50
     },
     {
@@ -60,9 +59,9 @@
       "saldo": 50
     },
     {
-      "name": "CARLOS",
-      "password": "CARLOS8",
-      "displayName": "CARLOS",
+      "name": "CARLOS FER",
+      "password": "CARLOSFER26",
+      "displayName": "CARLOS FER",
       "email": "",
       "username": "CARLOS",
       "saldo": 50
@@ -108,9 +107,9 @@
       "saldo": 50
     },
     {
-      "name": "JUAN",
-      "password": "JUAN15",
-      "displayName": "JUAN",
+      "name": "JUAN A",
+      "password": "JUAN A28",
+      "displayName": "JUAN A",
       "email": "",
       "username": "JUAN",
       "saldo": 50
@@ -164,9 +163,9 @@
       "saldo": 50
     },
     {
-      "name": "FRAN",
-      "password": "FRAN22",
-      "displayName": "FRAN",
+      "name": "FRAN CUR",
+      "password": "FRANCUR25",
+      "displayName": "FRAN CUR",
       "email": "",
       "username": "FRAN",
       "saldo": 50
@@ -188,19 +187,17 @@
       "saldo": 50
     },
     {
+      "username": "FRANCUR",
       "name": "FRAN CUR",
       "password": "FRANCUR25",
-      "displayName": "FRAN CUR",
       "email": "",
-      "username": "FRAN",
       "saldo": 50
     },
     {
+      "username": "CARLOSFER",
       "name": "CARLOS FER",
       "password": "CARLOSFER26",
-      "displayName": "CARLOS FER",
       "email": "",
-      "username": "CARLOS",
       "saldo": 50
     },
     {
@@ -212,11 +209,10 @@
       "saldo": 50
     },
     {
+      "username": "JUANA",
       "name": "JUAN A",
       "password": "JUAN A28",
-      "displayName": "JUAN A",
       "email": "",
-      "username": "JUAN",
       "saldo": 50
     },
     {
@@ -236,11 +232,10 @@
       "saldo": 50
     },
     {
+      "username": "DAVIDLUNITA",
       "name": "DAVID LUNITA",
       "password": "DAVIDLUNITA31",
-      "displayName": "DAVID LUNITA",
       "email": "",
-      "username": "DAVID",
       "saldo": 50
     },
     {
@@ -250,245 +245,47 @@
       "email": "",
       "username": "CRISTIAN",
       "saldo": 50
-    },
-    {
-      "username": "USER1",
-      "name": "Jugador 1",
-      "password": "pass0001",
-      "email": "jugador1@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER2",
-      "name": "Jugador 2",
-      "password": "pass0002",
-      "email": "jugador2@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER3",
-      "name": "Jugador 3",
-      "password": "pass0003",
-      "email": "jugador3@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER4",
-      "name": "Jugador 4",
-      "password": "pass0004",
-      "email": "jugador4@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER5",
-      "name": "Jugador 5",
-      "password": "pass0005",
-      "email": "jugador5@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER6",
-      "name": "Jugador 6",
-      "password": "pass0006",
-      "email": "jugador6@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER7",
-      "name": "Jugador 7",
-      "password": "pass0007",
-      "email": "jugador7@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER8",
-      "name": "Jugador 8",
-      "password": "pass0008",
-      "email": "jugador8@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER9",
-      "name": "Jugador 9",
-      "password": "pass0009",
-      "email": "jugador9@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER10",
-      "name": "Jugador 10",
-      "password": "pass0010",
-      "email": "jugador10@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER11",
-      "name": "Jugador 11",
-      "password": "pass0011",
-      "email": "jugador11@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER12",
-      "name": "Jugador 12",
-      "password": "pass0012",
-      "email": "jugador12@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER13",
-      "name": "Jugador 13",
-      "password": "pass0013",
-      "email": "jugador13@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER14",
-      "name": "Jugador 14",
-      "password": "pass0014",
-      "email": "jugador14@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER15",
-      "name": "Jugador 15",
-      "password": "pass0015",
-      "email": "jugador15@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER16",
-      "name": "Jugador 16",
-      "password": "pass0016",
-      "email": "jugador16@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER17",
-      "name": "Jugador 17",
-      "password": "pass0017",
-      "email": "jugador17@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER18",
-      "name": "Jugador 18",
-      "password": "pass0018",
-      "email": "jugador18@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER19",
-      "name": "Jugador 19",
-      "password": "pass0019",
-      "email": "jugador19@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER20",
-      "name": "Jugador 20",
-      "password": "pass0020",
-      "email": "jugador20@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER21",
-      "name": "Jugador 21",
-      "password": "pass0021",
-      "email": "jugador21@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER22",
-      "name": "Jugador 22",
-      "password": "pass0022",
-      "email": "jugador22@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER23",
-      "name": "Jugador 23",
-      "password": "pass0023",
-      "email": "jugador23@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER24",
-      "name": "Jugador 24",
-      "password": "pass0024",
-      "email": "jugador24@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER25",
-      "name": "Jugador 25",
-      "password": "pass0025",
-      "email": "jugador25@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER26",
-      "name": "Jugador 26",
-      "password": "pass0026",
-      "email": "jugador26@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER27",
-      "name": "Jugador 27",
-      "password": "pass0027",
-      "email": "jugador27@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER28",
-      "name": "Jugador 28",
-      "password": "pass0028",
-      "email": "jugador28@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER29",
-      "name": "Jugador 29",
-      "password": "pass0029",
-      "email": "jugador29@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER30",
-      "name": "Jugador 30",
-      "password": "pass0030",
-      "email": "jugador30@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER31",
-      "name": "Jugador 31",
-      "password": "pass0031",
-      "email": "jugador31@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER32",
-      "name": "Jugador 32",
-      "password": "pass0032",
-      "email": "jugador32@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER33",
-      "name": "Jugador 33",
-      "password": "pass0033",
-      "email": "jugador33@example.com",
-      "saldo": 50
-    },
-    {
-      "username": "USER34",
-      "name": "Jugador 34",
-      "password": "pass0034",
-      "email": "jugador34@example.com",
-      "saldo": 50
     }
   ],
-  "jornadas": []
+  "jornadas": [
+    {
+      "id": "1",
+      "name": "Jornada 1",
+      "partidos": [
+        {
+          "home": "Barcelona",
+          "away": "Real Madrid"
+        },
+        {
+          "home": "Betis",
+          "away": "Sevilla"
+        },
+        {
+          "home": "Valencia",
+          "away": "Levante"
+        },
+        {
+          "home": "Atletico",
+          "away": "Girona"
+        },
+        {
+          "home": "Rayo",
+          "away": "Getafe"
+        },
+        {
+          "home": "Cadiz",
+          "away": "Malaga"
+        }
+      ],
+      "resultados": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "pronosticos": {}
+    }
+  ]
 }
