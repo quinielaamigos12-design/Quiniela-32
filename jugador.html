@@ -3,6 +3,56 @@
 <div class="container-main">
   <nav class="sidebar" id="sidebar"><a href="jugador.html" class="active">Jugar</a><a href="perfil.html">Mi Perfil</a><a href="index.html">Salir</a></nav>
   <main class="content">
+  <div class="card" style="margin-top:12px;max-width:900px;margin-left:auto;margin-right:auto;">
+    <h4>Enviar pronósticos (visible para todos)</h4>
+    <div class="small">Selecciona la Jornada y escribe tus pronósticos separados por espacios (ej: 1 X 2 1 X 2). Al guardar, se añadirán a la jornada en data_working y serán visibles para todos cuando el admin exporte/importe el data.json final.</div>
+    <div style="margin-top:8px">
+      <label>Jornada ID: <input type="text" id="selJ" placeholder="1" style="padding:6px;border-radius:8px;border:1px solid #e6e9ef"></label>
+    </div>
+    <div style="margin-top:8px">
+      <label>Pronósticos: <input type="text" id="myPicks" placeholder="1 X 2 1 1 X" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></label>
+    </div>
+    <div style="margin-top:8px">
+      <button id="sendPBtn">Guardar pronóstico (visible para todos)</button>
+      <span id="sendMsg" class="small" style="margin-left:12px"></span>
+    </div>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('sendPBtn').addEventListener('click', ()=>{
+      const current = sessionStorage.getItem('currentUser') || localStorage.getItem('lastLoginUser') || '';
+      if(!current) return alert('Identifícate iniciando sesión primero.');
+      const jId = document.getElementById('selJ').value.trim();
+      if(!jId) return alert('Indica la jornada ID.');
+      const picks = document.getElementById('myPicks').value.trim().toUpperCase();
+      if(!picks) return alert('Escribe tus pronósticos.');
+      const arr = picks.split(/\s+/).filter(Boolean);
+      // load working data or data.json and update
+      let working = JSON.parse(localStorage.getItem('data_working')||'null');
+      if(!working){
+        // fetch data.json then set working
+        fetch('data.json').then(r=>r.json()).then(d=>{
+          working = d;
+          updateWorking(working);
+        });
+      } else updateWorking(working);
+
+      function updateWorking(d){
+        if(!d.jornadas) d.jornadas = [];
+        let j = d.jornadas.find(x=> (x.id && x.id.toString()===jId.toString()) || (x.name && x.name.toString()===jId.toString()) );
+        if(!j){
+          j = { id: jId, name: jId, partidos: [], resultados: [], pronosticos: {} };
+          d.jornadas.push(j);
+        }
+        j.pronosticos = j.pronosticos || {};
+        j.pronosticos[current.toUpperCase()] = arr;
+        localStorage.setItem('data_working', JSON.stringify(d));
+        document.getElementById('sendMsg').textContent = 'Pronóstico guardado en memoria y visible para el administrador/exportación.';
+      }
+    });
+  });
+  </script>
+
     <div class="card">
   <div id="saldoDisplay" style="margin-top:10px;font-weight:600">Saldo actual: <span id="saldoValue">-</span> €</div>
   <script>

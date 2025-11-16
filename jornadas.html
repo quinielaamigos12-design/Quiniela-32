@@ -1,0 +1,109 @@
+<!doctype html><html lang="es"><head>
+<style>
+.jornada-row{display:flex;gap:12px;flex-wrap:wrap}
+.match-card{flex:1;min-width:220px;border-radius:12px;padding:10px;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:0 6px 18px rgba(15,23,42,0.04);}
+.avatar-circle{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;font-weight:700;color:#fff;background:linear-gradient(90deg,#3758FF,#6C63FF);margin-right:8px;}
+.pron-line{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f0f2f6}
+.pron-line:last-child{border-bottom:none}
+.pron-picks{font-family:monospace;letter-spacing:2px}
+</style>
+<meta charset="utf-8"/><title>Jornadas</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Quiniela 32 - Jornadas</div></div>
+<div class="container-main">
+  <nav class="sidebar" id="sidebar">
+    <a href="index.html">Inicio</a>
+    <a class="active">Jornadas</a>
+    <a href="jugador.html">Jugador</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+  <main class="content">
+    <div class="card" style="max-width:1000px;margin:auto">
+      <h3>Jornadas y Partidos</h3>
+      <div class="small">Todas las jornadas y pronósticos se leen de <code>data.json</code>. Para editar jornadas o resultados, ve a Admin → Jornadas y exporta el nuevo data.json.</div>
+      <div id="jornadasList" style="margin-top:12px"></div>
+    </div>
+  </main>
+</div>
+<script>
+async function renderJornadas(){
+  const resp = await fetch('data.json');
+  const data = await resp.json();
+  const jornadas = data.jornadas || [];
+  const players = (data.players||[]).map(p=>({username: (p.username||p.name||'').toString().toUpperCase(), name: p.name||p.username||''}));
+  const container = document.getElementById('jornadasList');
+  container.innerHTML = '';
+  if(jornadas.length===0){
+    container.innerHTML = '<div class="small">No hay jornadas definidas aún. Pide al administrador que las cree en Admin.</div>';
+    return;
+  }
+  jornadas.forEach((j, idx)=>{
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.style.marginTop='10px';
+    let html = `<h4>Jornada ${j.id || (idx+1)} - ${j.name || ''}</h4>`;
+    // partidos table
+    if(j.partidos && j.partidos.length){
+      html += '<table style="width:100%;border-collapse:collapse;"><thead><tr><th>#</th><th>Partido</th><th>Resultado</th></tr></thead><tbody>';
+      j.partidos.forEach((p,i)=>{
+        const res = (j.resultados && j.resultados[i])? j.resultados[i] : '-';
+        html += `<tr><td>${i+1}</td><td>${p.home} — ${p.away}</td><td>${res}</td></tr>`;
+      });
+      html += '</tbody></table>';
+    } else {
+      html += '<div class="small">No hay partidos para esta jornada.</div>';
+    }
+    // pronosticos and aciertos
+    
+html += '<h5 style="margin-top:12px">Pronósticos y aciertos</h5>';
+    html += '<div class="jornada-row">';
+    unameList.forEach(u=>{
+      const pObj = (players.find(x=>x.username.toUpperCase()===u) || {});
+      const display = pObj.name || u;
+      const picks = (pron[u]||[]).join(' ');
+      let ac=0;
+      const results = j.resultados||[];
+      const userPicks = pron[u]||[];
+      for(let i=0;i<results.length;i++){ if(!results[i]) continue; if(userPicks[i] && userPicks[i].toString().toUpperCase()===results[i].toString().toUpperCase()) ac++; }
+      html += '<div class="match-card">';
+      html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div><span class="avatar-circle">'+ (display.slice(0,2).toUpperCase()) +'</span><strong>'+ display +'</strong></div><div class="small">Aciertos: <strong>'+ac+'</strong></div></div>';
+      html += '<div class="pron-line"><div class="pron-picks">'+ picks +'</div></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+
+    html += '<table class="user-table"><thead><tr><th>Jugador</th><th>Pronósticos</th><th>Aciertos</th></tr></thead><tbody>';
+    // build list of players from data.players and pronosticos keys
+    const pron = j.pronosticos || {};
+    // gather usernames
+    const usernames = new Set();
+    players.forEach(p=>usernames.add(p.username.toUpperCase()));
+    Object.keys(pron||{}).forEach(u=>usernames.add(u.toUpperCase()));
+    const unameList = Array.from(usernames);
+    unameList.forEach(u=>{
+      const pObj = (players.find(x=>x.username.toUpperCase()===u) || {});
+      const display = pObj.name || u;
+      const picks = (pron[u]||[]).join(' ');
+      // calculate aciertos
+      let ac=0;
+      const results = j.resultados||[];
+      const userPicks = pron[u]||[];
+      for(let i=0;i<results.length;i++){
+        if(!results[i]) continue;
+        if(userPicks[i] && userPicks[i].toString().toUpperCase() === results[i].toString().toUpperCase()) ac++;
+      }
+      html += `<tr><td>${display}</td><td>${picks}</td><td>${ac}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    div.innerHTML = html;
+    container.appendChild(div);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  renderJornadas();
+  document.getElementById('menuBtn').addEventListener('click', ()=>{
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+});
+</script>
+</body></html>

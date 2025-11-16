@@ -168,3 +168,69 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   }
 });
+
+// If there's a working data copy in localStorage, use it when rendering players
+function getCurrentDataCopy(){
+  const working = JSON.parse(localStorage.getItem('data_working')||'null');
+  if(working) return working;
+  // otherwise try to fetch data.json synchronously isn't possible; functions using this should fetch
+  return null;
+}
+
+
+// --- Automatización de descuentos que opera sobre data_working o data.json ---
+async function aplicarDescuentosEnWorking(semanaLabel, aciertosMap){
+  // Try to use working copy first
+  let working = JSON.parse(localStorage.getItem('data_working')||'null');
+  if(!working){
+    // fetch data.json then clone into working
+    const r = await fetch('data.json'); working = await r.json();
+  }
+  if(!working.jornadas) working.jornadas = working.jornadas || [];
+  // Build players map from working.players and localStorage app_players
+  const stored = JSON.parse(localStorage.getItem('app_players')||'[]');
+  const map = {};
+  (working.players||[]).forEach(p=>{ if(p && p.username) map[p.username.toUpperCase()] = Object.assign({}, p); });
+  stored.forEach(p=>{ if(p && p.username) map[p.username.toUpperCase()] = Object.assign({}, map[p.username.toUpperCase()]||{}, p); });
+  // ensure saldo default
+  Object.values(map).forEach(p=>{ if(typeof p.saldo==='undefined') p.saldo = 50; });
+  // calculate deductions
+  const playersArr = Object.values(map).map(p=>({ username: p.username.toUpperCase(), saldo: p.saldo }));
+  // prepare aciertos array mapping for all players: default 0
+  const acArr = playersArr.map(p=>({ username: p.username, aciertos: aciertosMap[p.username] || 0 }));
+  // determine min and second min
+  const sorted = acArr.slice().sort((a,b)=>a.aciertos - b.aciertos);
+  const minVal = sorted.length ? sorted[0].aciertos : 0;
+  const worst = sorted.filter(x=>x.aciertos===minVal).map(x=>x.username);
+  const secondObj = sorted.find(x=> x.aciertos>minVal );
+  const secondVal = secondObj ? secondObj.aciertos : null;
+  const secondWorst = secondVal===null ? [] : sorted.filter(x=>x.aciertos===secondVal).map(x=>x.username);
+  // apply deductions: -1 all, -2 worst, -1 second worst
+  const changes = [];
+  Object.values(map).forEach(p=>{
+    const uname = p.username.toUpperCase();
+    const before = p.saldo || 0;
+    let deduction = 1;
+    if(worst.includes(uname)) deduction += 2;
+    else if(secondWorst.includes(uname)) deduction += 1;
+    p.saldo = Math.max(0, (p.saldo||0) - deduction);
+    changes.push({ usuario: uname, saldoAntes: before, deducido: deduction, saldoDespues: p.saldo, aciertos: aciertosMap[uname] || 0 });
+  });
+  // write back to working and to localStorage.app_players for persistence across browser sessions
+  working.players = Object.values(map).map(p=>({ username: p.username, name: p.name||p.username, password: p.password||'', email: p.email||'', saldo: p.saldo }));
+  localStorage.setItem('data_working', JSON.stringify(working));
+  localStorage.setItem('app_players', JSON.stringify(working.players));
+  // save historial
+  const historial = JSON.parse(localStorage.getItem('historial')||'{}');
+  historial[semanaLabel] = changes;
+  localStorage.setItem('historial', JSON.stringify(historial));
+  return { working, changes };
+}
+
+// Expose a helper to be called by admin UI (if button exists)
+async function aplicarDescuentosHelper(semanaLabel, aciertosRaw){
+  const map = {};
+  (aciertosRaw||[]).forEach(kv=>{ map[kv.user.toUpperCase()] = kv.aciertos; });
+  const res = await aplicarDescuentosEnWorking(semanaLabel, map);
+  return res;
+}

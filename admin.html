@@ -5,6 +5,114 @@
   <main class="content">
     <div class="card"><h3>Importar jornada desde API (ThesportsDB)</h3>
 <div class="card" style="margin-top:12px">
+  <h4>Editor de Jornadas</h4>
+  <div class="small">Crea/edita jornadas, añade partidos, resultados y pronósticos. Cuando termines, utiliza 'Exportar data.json' para descargar el JSON actualizado que todos usarán.</div>
+  <div style="margin-top:8px">
+    <label>Id / Nombre jornada: <input type="text" id="jId" placeholder="1" style="padding:6px;border-radius:8px;border:1px solid #e6e9ef"></label>
+  </div>
+  <div style="margin-top:8px">
+    <label>Partidos (una línea = local,visitante). Ej: Barcelona,Real Madrid</label>
+    <textarea id="partidosArea" style="width:100%;min-height:90px;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></textarea>
+  </div>
+  <div style="margin-top:8px">
+    <label>Resultados (línea única, separados por espacio o coma). Ej: 1 X 2 1 1 X</label>
+    <input type="text" id="resLine" placeholder="1 X 2 ..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef">
+  </div>
+  <div style="margin-top:8px">
+    <label>Pronósticos (línea por usuario: USUARIO picks separados por espacio). Ej: PEPE 1 X 2 1 1 X</label>
+    <textarea id="pronArea" style="width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></textarea>
+  </div>
+  <div style="margin-top:8px">
+    <button id="saveJBtn">Guardar Jornada en memoria</button>
+    <button id="loadJBtn" class="secondary" style="margin-left:8px">Cargar Jornada</button>
+    <button id="exportAllBtn" class="secondary" style="margin-left:8px">Exportar data.json</button>
+  </div>
+  <div id="jMsg" class="small" style="margin-top:8px"></div>
+</div>
+<script>
+// admin jornada editor script
+function parsePartidos(text){
+  return text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).map(line=>{
+    const parts = line.split(',').map(p=>p.trim());
+    return { home: parts[0]||'', away: parts[1]||'' };
+  });
+}
+function parseResultados(line){
+  return line.trim()? line.split(/\s+|,/) .map(s=>s.trim().toUpperCase()).filter(Boolean) : [];
+}
+function parsePron(text){
+  const map = {};
+  text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).forEach(line=>{
+    const parts = line.split(/\s+/).filter(Boolean);
+    if(parts.length>=2){
+      const u = parts[0].toUpperCase();
+      map[u] = parts.slice(1).map(p=>p.toUpperCase());
+    }
+  });
+  return map;
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('saveJBtn').addEventListener('click', ()=>{
+    const idRaw = document.getElementById('jId').value.trim() || '';
+    const jId = idRaw || ('jornada-'+ new Date().toISOString().slice(0,10));
+    const name = idRaw;
+    const partidos = parsePartidos(document.getElementById('partidosArea').value);
+    const resultados = parseResultados(document.getElementById('resLine').value);
+    const pron = parsePron(document.getElementById('pronArea').value);
+    // load data.json, update jornadas array and save to localStorage for preview and export
+    fetch('data.json').then(r=>r.json()).then(d=>{
+      const jornadas = d.jornadas || [];
+      // remove existing with same id
+      const idx = jornadas.findIndex(x=> (x.id && x.id.toString()===jId.toString()) || (x.name && x.name.toString()===jId.toString()));
+      const newJ = { id: jId, name: name, partidos: partidos, resultados: resultados, pronosticos: pron };
+      if(idx>=0) jornadas[idx] = newJ; else jornadas.push(newJ);
+      // store in localStorage as working copy
+      d.jornadas = jornadas;
+      localStorage.setItem('data_working', JSON.stringify(d));
+      document.getElementById('jMsg').textContent = 'Jornada guardada en memoria (localStorage). Usa Exportar data.json para descargar el JSON completo.';
+      // refresh players table if present
+      if(typeof loadAndRenderPlayers==='function') loadAndRenderPlayers();
+    });
+  });
+
+  document.getElementById('loadJBtn').addEventListener('click', ()=>{
+    const idRaw = document.getElementById('jId').value.trim() || '';
+    fetch('data.json').then(r=>r.json()).then(d=>{
+      const jornadas = d.jornadas || [];
+      const j = jornadas.find(x=> (x.id && x.id.toString()===idRaw.toString()) || (x.name && x.name.toString()===idRaw.toString()));
+      if(!j) return alert('No encontrada en data.json. Puedes cargar desde localStorage si existe.');
+      // fill fields
+      document.getElementById('partidosArea').value = (j.partidos||[]).map(p=> (p.home||'')+','+(p.away||'') ).join('\n');
+      document.getElementById('resLine').value = (j.resultados||[]).join(' ');
+      const pronLines = [];
+      const pron = j.pronosticos || {};
+      Object.keys(pron).forEach(u=> pronLines.push(u + ' ' + (pron[u]||[]).join(' ')));
+      document.getElementById('pronArea').value = pronLines.join('\n');
+      document.getElementById('jMsg').textContent = 'Cargado desde data.json.';
+    });
+  });
+
+  document.getElementById('exportAllBtn').addEventListener('click', ()=>{
+    // merge working copy in localStorage with data.json and trigger download
+    const working = JSON.parse(localStorage.getItem('data_working')||'null');
+    if(!working){
+      // just offer current data.json
+      fetch('data.json').then(r=>r.json()).then(d=>{
+        const blob = new Blob([JSON.stringify(d, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'data_export.json'; document.body.appendChild(a); a.click(); a.remove();
+      });
+    } else {
+      const blob = new Blob([JSON.stringify(working, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'data_export.json'; document.body.appendChild(a); a.click(); a.remove();
+    }
+  });
+});
+</script>
+
+<div class="card" style="margin-top:12px">
   <h4>Procesar descuentos semanales</h4>
   <div class="small">Pega aquí las líneas con "USUARIO aciertos" (por ejemplo: ADRIAN 5)</div>
   <textarea id="aciertosArea" style="width:100%;min-height:110px;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:8px"></textarea>
