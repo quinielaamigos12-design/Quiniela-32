@@ -1,1 +1,1 @@
-console.log('jugador placeholder');
+// helper script placeholder

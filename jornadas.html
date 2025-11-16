@@ -1,1 +1,69 @@
-<html><body><h2>Jornadas (placeholder, matriz se insertará)</h2></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><title>Jornadas - Matriz</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Quiniela 32 - Jornadas (Matriz)</div></div>
+<div class="container-main">
+  <nav class="sidebar" id="sidebar">
+    <a href="index.html">Inicio</a>
+    <a class="active">Jornadas</a>
+    <a href="jugador.html">Jugador</a>
+    <a href="admin.html">Admin</a>
+  </nav>
+  <main class="content">
+    <div class="card" style="max-width:1100px;margin:auto">
+      <h3>Jornadas - Vista Matriz</h3>
+      <div class="small">Selecciona la jornada y verás la matriz con todos los partidos en columnas y los jugadores en filas. Usa el scroll horizontal para navegar cuando haya muchos partidos.</div>
+      <div style="margin-top:10px">
+        <label>Seleccionar Jornada: <select id="selJornada"></select></label>
+      </div>
+      <div id="matrizContainer" class="matriz-wrapper"></div>
+    </div>
+  </main>
+</div>
+<script>
+function buildMatriz(jIndex){
+  fetch('data.json').then(function(resp){ return resp.json(); }).then(function(data){
+    var jornadas = data.jornadas || []; if(jIndex==null) jIndex = 0;
+    if(!jornadas.length){ document.getElementById('matrizContainer').innerHTML='<div class="small">No hay jornadas.</div>'; return; }
+    var j = jornadas[jIndex];
+    var players = data.players || [];
+    var partidos = j.partidos || [];
+    var html = '<table class="matriz-table"><thead><tr><th>Jugador</th>';
+    partidos.forEach(function(p,i){ html += '<th>' + (i+1) + '. ' + (p.home || '') + '–' + (p.away || '') + '</th>'; });
+    html += '</tr></thead><tbody>';
+    var pron = j.pronosticos || {};
+    players.forEach(function(pl){
+      var uname = (pl.username||pl.name||'').toString();
+      html += '<tr>';
+      html += '<td class="player-name">' + (pl.name || uname) + '</td>';
+      partidos.forEach(function(p,i){
+        var pick = '-';
+        if(pron[uname.toUpperCase()] && pron[uname.toUpperCase()][i]) pick = pron[uname.toUpperCase()][i];
+        else if(pron[uname] && pron[uname][i]) pick = pron[uname][i];
+        html += '<td class="pick">' + (pick || '-') + '</td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    document.getElementById('matrizContainer').innerHTML = html;
+  });
+}
+
+function populateSelector(){
+  fetch('data.json').then(function(resp){ return resp.json(); }).then(function(data){
+    var jornadas = data.jornadas || [];
+    var sel = document.getElementById('selJornada');
+    sel.innerHTML = '';
+    jornadas.forEach(function(j,i){
+      var opt = document.createElement('option'); opt.value = i; opt.text = (j.id || ('Jornada '+(i+1))) + ' - ' + (j.name || '');
+      sel.appendChild(opt);
+    });
+    sel.addEventListener('change', function(){ buildMatriz(parseInt(sel.value)); });
+    if(jornadas.length) buildMatriz(0);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  populateSelector();
+  document.getElementById('menuBtn').addEventListener('click', function(){ document.getElementById('sidebar').classList.toggle('open'); });
+});
+</script>
+</body></html>

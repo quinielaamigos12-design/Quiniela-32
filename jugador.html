@@ -1,1 +1,191 @@
-<html><body><h2>Jugador</h2></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Jugador — Quiniela32</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Quiniela 32</div></div>
+<div class="container-main">
+  
+<nav class="sidebar" id="sidebar">
+  <a href="jugador.html">🏠 Inicio</a>
+  <a href="pronosticos.html">📝 Pronósticos</a>
+  <a href="jornadas.html">📅 Jornadas</a>
+  <a href="perfil.html">👤 Mi perfil</a>
+  <a href="#" onclick="logout()">⛔ Salir</a>
+</nav>
+
+  <main class="content">
+  <div class="card" style="margin-top:12px;max-width:900px;margin-left:auto;margin-right:auto;">
+    <h4>Enviar pronósticos (visible para todos)</h4>
+    <div class="small">Selecciona la Jornada y escribe tus pronósticos separados por espacios (ej: 1 X 2 1 X 2). Al guardar, se añadirán a la jornada en data_working y serán visibles para todos cuando el admin exporte/importe el data.json final.</div>
+    <div style="margin-top:8px">
+      <label>Jornada ID: <input type="text" id="selJ" placeholder="1" style="padding:6px;border-radius:8px;border:1px solid #e6e9ef"></label>
+    </div>
+    <div style="margin-top:8px">
+      <label>Pronósticos: <input type="text" id="myPicks" placeholder="1 X 2 1 1 X" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></label>
+    </div>
+    <div style="margin-top:8px">
+      <button id="sendPBtn">Guardar pronóstico (visible para todos)</button>
+      <span id="sendMsg" class="small" style="margin-left:12px"></span>
+    </div>
+  </div>
+  <script>
+  document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('sendPBtn').addEventListener('click', ()=>{
+      const current = sessionStorage.getItem('currentUser') || localStorage.getItem('lastLoginUser') || '';
+      if(!current) return alert('Identifícate iniciando sesión primero.');
+      const jId = document.getElementById('selJ').value.trim();
+      if(!jId) return alert('Indica la jornada ID.');
+      const picks = document.getElementById('myPicks').value.trim().toUpperCase();
+      if(!picks) return alert('Escribe tus pronósticos.');
+      const arr = picks.split(/\s+/).filter(Boolean);
+      // load working data or data.json and update
+      let working = JSON.parse(localStorage.getItem('data_working')||'null');
+      if(!working){
+        // fetch data.json then set working
+        fetch('data.json').then(r=>r.json()).then(d=>{
+          working = d;
+          updateWorking(working);
+        });
+      } else updateWorking(working);
+
+      function updateWorking(d){
+        if(!d.jornadas) d.jornadas = [];
+        let j = d.jornadas.find(x=> (x.id && x.id.toString()===jId.toString()) || (x.name && x.name.toString()===jId.toString()) );
+        if(!j){
+          j = { id: jId, name: jId, partidos: [], resultados: [], pronosticos: {} };
+          d.jornadas.push(j);
+        }
+        j.pronosticos = j.pronosticos || {};
+        j.pronosticos[current.toUpperCase()] = arr;
+        localStorage.setItem('data_working', JSON.stringify(d));
+        document.getElementById('sendMsg').textContent = 'Pronóstico guardado en memoria y visible para el administrador/exportación.';
+      }
+    });
+  });
+  </script>
+
+    <div class="card">
+  <div id="saldoDisplay" style="margin-top:10px;font-weight:600">Saldo actual: <span id="saldoValue">-</span> €</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const current = sessionStorage.getItem('currentUser') || localStorage.getItem('lastLoginUser') || '';
+      if(!current) return;
+      // try to get player from localStorage players first
+      const stored = JSON.parse(localStorage.getItem('app_players')||'[]');
+      let p = stored.find(x=>x.username && x.username.toUpperCase()===current.toUpperCase());
+      if(!p){
+        fetch('data.json').then(r=>r.json()).then(d=>{
+          const bp = (d.players||[]).find(x=>x.username && x.username.toUpperCase()===current.toUpperCase());
+          if(bp) document.getElementById('saldoValue').textContent = (typeof bp.saldo!=='undefined'? bp.saldo : 50);
+        });
+      } else {
+        document.getElementById('saldoValue').textContent = (typeof p.saldo!=='undefined'? p.saldo : 50);
+      }
+    });
+  </script>
+<label>Selecciona jornada:</label><select id="selJ"></select></div>
+    <div class="player-layout">
+      <div class="player-list card" id="matchesList"></div>
+      <div class="card">
+        <h3>Mi Perfil</h3>
+        <div class="form-group"><label>Nombre visible</label><input id="displayName" type="text"></div>
+        <div class="form-group"><label>Email</label><input id="email" type="email"></div>
+        <div style="text-align:right"><button id="saveProfile" class="btn">Guardar</button></div>
+        <div id="status" class="small" style="margin-top:8px"></div>
+      </div>
+    </div>
+    <div class="card"><h3>Clasificación Global</h3><div id="globalRank"></div></div>
+  </main>
+</div>
+<script src="auth.js"></script>
+<script>
+// helpers
+async function loadData(){ try{return await fetch('data.json',{cache:'no-store'}).then(r=>r.json()); }catch(e){ return {players:[],jornadas:[]}; } }
+function getSession(){ return sessionStorage.getItem('session') || new URLSearchParams(location.search).get('user'); }
+
+// profile autosave via localStorage
+function loadProfileLocal(user){
+  const dn = localStorage.getItem(user+'_dn');
+  const em = localStorage.getItem(user+'_em');
+  return {displayName: dn, email: em};
+}
+function saveProfileLocal(user, displayName, email){
+  localStorage.setItem(user+'_dn', displayName);
+  localStorage.setItem(user+'_em', email);
+}
+
+async function render(){
+  const data = await loadData();
+  const sel = document.getElementById('selJ'); sel.innerHTML='';
+  (data.jornadas||[]).forEach((j,idx)=>{ const opt=document.createElement('option'); opt.value=idx; opt.text='Jornada '+j.id; sel.appendChild(opt); });
+  if((data.jornadas||[]).length) loadMatches(0);
+  sel.addEventListener('change', ()=>loadMatches(sel.value));
+  renderPlayersList(data);
+  renderGlobal(data);
+  populateProfile(data);
+}
+async function loadMatches(idx){
+  const data = await loadData();
+  const j = data.jornadas[idx];
+  const list = document.getElementById('matchesList'); list.innerHTML='';
+  if(!j){ list.innerHTML='<div class="small">No hay jornadas</div>'; return; }
+  const session = getSession();
+  j.matches.forEach((m,i)=>{
+    const div = document.createElement('div'); div.className='player-item';
+    const userPron = ((data.players||[]).find(p=>p.name===session) || {}).pronosticos || {};
+    const myP = (userPron && userPron[j.id])? userPron[j.id][i] : '';
+    div.innerHTML = '<div style="display:flex;align-items:center;gap:12px"><div class="badge">'+(i+1)+'</div><div><strong>'+m.strEvent+'</strong><div class="small">'+(m.home||'')+' - '+(m.away||'')+'</div></div></div>' +
+      '<div><select data-i="'+i+'" class="selp"><option value="">-</option><option value="1">1</option><option value="X">X</option><option value="2">2</option></select></div>';
+    list.appendChild(div);
+    if(myP) div.querySelector('select').value = myP;
+  });
+  const save = document.createElement('div'); save.style.marginTop='12px'; save.innerHTML = '<button id="savePron" class="btn">Guardar Pronósticos</button>'; list.appendChild(save);
+  document.getElementById('savePron').addEventListener('click', async ()=>{
+    const selects = document.querySelectorAll('.selp'); const arr=[]; selects.forEach(s=>arr.push(s.value||''));
+    const data = await loadData();
+    const session = getSession(); if(!session) return alert('No estás identificado');
+    data.players = data.players || [];
+    let p = data.players.find(x=>x.name===session);
+    if(!p){ p={name:session,password:'',displayName:session,email:'',pronosticos:{}}; data.players.push(p); }
+    p.pronosticos = p.pronosticos || {};
+    const jId = data.jornadas[document.getElementById('selJ').value].id;
+    p.pronosticos[jId] = arr;
+    const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='data.json'; a.click(); a.remove();
+    document.getElementById('status').textContent='Pronósticos preparados para exportar (descarga data.json)';
+    render(); // refresh results if any
+  });
+  // show per-player aciertos if results exist
+  const jcur = j;
+  if(jcur && jcur.results && jcur.results.some(Boolean)){
+    const table = document.createElement('div'); table.style.marginTop='12px'; let html='<h4>Resultados jornada '+jcur.id+'</h4><table class="table"><tr><th>Jugador</th><th>Aciertos</th></tr>';
+    (data.players||[]).forEach(p=>{
+      const pron = (p.pronosticos && p.pronosticos[jcur.id]) || [];
+      let ac=0; for(let i=0;i<jcur.matches.length;i++){ if(jcur.results[i] && pron[i] && jcur.results[i]===pron[i]) ac++; }
+      html += '<tr><td>'+ (p.displayName||p.name) +'</td><td>'+(ac)+' </td></tr>';
+    });
+    html += '</table>'; table.innerHTML = html; list.appendChild(table);
+  }
+}
+
+async function renderPlayersList(data){ /* placeholder for later */ }
+
+async function renderGlobal(data){
+  const totals={}; (data.players||[]).forEach(p=>{ totals[p.name]=0; if(p.pronosticos){ for(const jId in p.pronosticos){ const j = (data.jornadas||[]).find(x=>x.id===jId); if(!j||!j.results) continue; for(let i=0;i<j.results.length;i++){ if(j.results[i] && p.pronosticos[jId][i] && j.results[i]===p.pronosticos[jId][i]) totals[p.name]++; } } } });
+  const arr = Object.keys(totals).map(n=>({name:n,total:totals[n]})).sort((a,b)=>b.total-a.total);
+  const html='<table class="table"><tr><th>Jugador</th><th>Aciertos totales</th></tr>'+arr.map(a=>'<tr><td>'+a.name+'</td><td>'+a.total+'</td></tr>').join('')+'</table>';
+  document.getElementById('globalRank').innerHTML = html;
+}
+
+async function populateProfile(data){
+  const session = getSession(); if(!session) return;
+  // load from localStorage first
+  const local = loadProfileLocal(session);
+  document.getElementById('displayName').value = local.displayName || ((data.players||[]).find(x=>x.name===session)||{}).displayName || session;
+  document.getElementById('email').value = local.email || ((data.players||[]).find(x=>x.name===session)||{}).email || '';
+  document.getElementById('saveProfile').addEventListener('click', ()=>{
+    const dn = document.getElementById('displayName').value.trim(); const em = document.getElementById('email').value.trim(); saveProfileLocal(session,dn,em);
+    document.getElementById('status').textContent = 'Perfil guardado localmente'; render();
+  });
+}
+
+document.getElementById('menuBtn').addEventListener('click', ()=>{ document.getElementById('sidebar').classList.toggle('open'); });
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body></html>

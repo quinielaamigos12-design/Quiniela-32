@@ -1,0 +1,38 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Jugador - Inicio</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="headerbar"><div class="site-title">Quiniela 32 - Jugador</div></div>
+<div class="container-main">
+<nav class="sidebar" id="sidebar">
+  <a href="jugador_home.html" class="active">Inicio</a>
+  <a href="pronosticos.html">Pronósticos</a>
+  <a href="jornadas.html">Jornadas</a>
+  <a href="clasificacion.html">Aciertos</a>
+  <a href="perfil.html">Mi perfil</a>
+  <a href="#" id="logout">Salir</a>
+</nav>
+<main class="content">
+  <div class="card" id="welcomeCard" style="max-width:900px;margin:auto;">
+    <h3>Bienvenido, <span id="playerName">Jugador</span></h3>
+    <div id="saldoInfo" class="small" style="margin-top:8px"></div>
+    <div style="margin-top:12px">
+      <button onclick="location.href='pronosticos.html'">Ir a Pronósticos</button>
+      <button onclick="location.href='jornadas.html'" class="secondary" style="margin-left:8px">Ver Jornadas</button>
+    </div>
+  </div>
+</main>
+</div>
+<script src="auth.js"></script>
+<script>
+document.getElementById('logout').addEventListener('click', ()=>{ sessionStorage.removeItem('currentUser'); location='index.html'; });
+document.addEventListener('DOMContentLoaded', ()=>{
+  const user = sessionStorage.getItem('currentUser') || localStorage.getItem('lastLoginUser') || '';
+  if(!user) location='index.html';
+  // display name and saldo
+  fetch('data.json').then(r=>r.json()).then(d=>{
+    const p = (d.players||[]).find(x=> (x.username||x.name||'').toString().toUpperCase()===user.toString().toUpperCase());
+    if(p) document.getElementById('playerName').textContent = p.name || p.username;
+    document.getElementById('saldoInfo').textContent = 'Saldo: ' + (p && typeof p.saldo!=='undefined' ? p.saldo : 50) + ' €';
+  });
+});
+</script>
+</body></html>

@@ -1,1 +1,170 @@
-<html><body><h2>Admin placeholder</h2></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin — Quiniela32</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Admin — Quiniela32</div></div>
+<div class="container-main">
+  <nav class="sidebar" id="sidebar"><a class="active">Panel</a><a href="index.html">Salir</a></nav>
+  <main class="content">
+    <div class="card"><h3>Importar jornada desde API (ThesportsDB)</h3>
+<div class="card" style="margin-top:12px">
+  <h4>Editor de Jornadas</h4>
+  <div class="small">Crea/edita jornadas, añade partidos, resultados y pronósticos. Cuando termines, utiliza 'Exportar data.json' para descargar el JSON actualizado que todos usarán.</div>
+  <div style="margin-top:8px">
+    <label>Id / Nombre jornada: <input type="text" id="jId" placeholder="1" style="padding:6px;border-radius:8px;border:1px solid #e6e9ef"></label>
+  </div>
+  <div style="margin-top:8px">
+    <label>Partidos (una línea = local,visitante). Ej: Barcelona,Real Madrid</label>
+    <textarea id="partidosArea" style="width:100%;min-height:90px;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></textarea>
+  </div>
+  <div style="margin-top:8px">
+    <label>Resultados (línea única, separados por espacio o coma). Ej: 1 X 2 1 1 X</label>
+    <input type="text" id="resLine" placeholder="1 X 2 ..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef">
+  </div>
+  <div style="margin-top:8px">
+    <label>Pronósticos (línea por usuario: USUARIO picks separados por espacio). Ej: PEPE 1 X 2 1 1 X</label>
+    <textarea id="pronArea" style="width:100%;min-height:120px;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></textarea>
+  </div>
+  <div style="margin-top:8px">
+    <button id="saveJBtn">Guardar Jornada en memoria</button>
+    <button id="loadJBtn" class="secondary" style="margin-left:8px">Cargar Jornada</button>
+    <button id="exportAllBtn" class="secondary" style="margin-left:8px">Exportar data.json</button>
+  </div>
+  <div id="jMsg" class="small" style="margin-top:8px"></div>
+</div>
+<script>
+// admin jornada editor script
+function parsePartidos(text){
+  return text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).map(line=>{
+    const parts = line.split(',').map(p=>p.trim());
+    return { home: parts[0]||'', away: parts[1]||'' };
+  });
+}
+function parseResultados(line){
+  return line.trim()? line.split(/\s+|,/) .map(s=>s.trim().toUpperCase()).filter(Boolean) : [];
+}
+function parsePron(text){
+  const map = {};
+  text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean).forEach(line=>{
+    const parts = line.split(/\s+/).filter(Boolean);
+    if(parts.length>=2){
+      const u = parts[0].toUpperCase();
+      map[u] = parts.slice(1).map(p=>p.toUpperCase());
+    }
+  });
+  return map;
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('saveJBtn').addEventListener('click', ()=>{
+    const idRaw = document.getElementById('jId').value.trim() || '';
+    const jId = idRaw || ('jornada-'+ new Date().toISOString().slice(0,10));
+    const name = idRaw;
+    const partidos = parsePartidos(document.getElementById('partidosArea').value);
+    const resultados = parseResultados(document.getElementById('resLine').value);
+    const pron = parsePron(document.getElementById('pronArea').value);
+    // load data.json, update jornadas array and save to localStorage for preview and export
+    fetch('data.json').then(r=>r.json()).then(d=>{
+      const jornadas = d.jornadas || [];
+      // remove existing with same id
+      const idx = jornadas.findIndex(x=> (x.id && x.id.toString()===jId.toString()) || (x.name && x.name.toString()===jId.toString()));
+      const newJ = { id: jId, name: name, partidos: partidos, resultados: resultados, pronosticos: pron };
+      if(idx>=0) jornadas[idx] = newJ; else jornadas.push(newJ);
+      // store in localStorage as working copy
+      d.jornadas = jornadas;
+      localStorage.setItem('data_working', JSON.stringify(d));
+      document.getElementById('jMsg').textContent = 'Jornada guardada en memoria (localStorage). Usa Exportar data.json para descargar el JSON completo.';
+      // refresh players table if present
+      if(typeof loadAndRenderPlayers==='function') loadAndRenderPlayers();
+    });
+  });
+
+  document.getElementById('loadJBtn').addEventListener('click', ()=>{
+    const idRaw = document.getElementById('jId').value.trim() || '';
+    fetch('data.json').then(r=>r.json()).then(d=>{
+      const jornadas = d.jornadas || [];
+      const j = jornadas.find(x=> (x.id && x.id.toString()===idRaw.toString()) || (x.name && x.name.toString()===idRaw.toString()));
+      if(!j) return alert('No encontrada en data.json. Puedes cargar desde localStorage si existe.');
+      // fill fields
+      document.getElementById('partidosArea').value = (j.partidos||[]).map(p=> (p.home||'')+','+(p.away||'') ).join('\n');
+      document.getElementById('resLine').value = (j.resultados||[]).join(' ');
+      const pronLines = [];
+      const pron = j.pronosticos || {};
+      Object.keys(pron).forEach(u=> pronLines.push(u + ' ' + (pron[u]||[]).join(' ')));
+      document.getElementById('pronArea').value = pronLines.join('\n');
+      document.getElementById('jMsg').textContent = 'Cargado desde data.json.';
+    });
+  });
+
+  document.getElementById('exportAllBtn').addEventListener('click', ()=>{
+    // merge working copy in localStorage with data.json and trigger download
+    const working = JSON.parse(localStorage.getItem('data_working')||'null');
+    if(!working){
+      // just offer current data.json
+      fetch('data.json').then(r=>r.json()).then(d=>{
+        const blob = new Blob([JSON.stringify(d, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'data_export.json'; document.body.appendChild(a); a.click(); a.remove();
+      });
+    } else {
+      const blob = new Blob([JSON.stringify(working, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'data_export.json'; document.body.appendChild(a); a.click(); a.remove();
+    }
+  });
+});
+</script>
+
+<div class="card" style="margin-top:12px">
+  <h4>Procesar descuentos semanales</h4>
+  <div class="small">Pega aquí las líneas con "USUARIO aciertos" (por ejemplo: ADRIAN 5)</div>
+  <textarea id="aciertosArea" style="width:100%;min-height:110px;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:8px"></textarea>
+  <div style="margin-top:8px">
+    <label>Jornada / Semana: <input type="text" id="semanaLabel" placeholder="jornada1" style="padding:6px;border-radius:8px;border:1px solid #e6e9ef"></label>
+  </div>
+  <div style="margin-top:8px">
+    <button id="procesarBtn">Aplicar descuentos semana</button>
+    <button id="exportDataBtn" class="secondary" style="margin-left:8px">Exportar data.json</button>
+    <button id="exportHistBtn" class="secondary" style="margin-left:8px">Descargar historial</button>
+  </div>
+  <div id="procMsg" class="small" style="margin-top:8px"></div>
+</div>
+
+<div class="card" style="margin-top:12px">
+  <h4>Importar usuarios (pega líneas: numero nombre contraseña)</h4>
+  <textarea id="importArea" style="width:100%;min-height:90px;padding:10px;border-radius:8px;border:1px solid #e6e9ef"></textarea>
+  <div style="margin-top:8px"><button id="importBtn">Importar</button></div>
+</div>
+
+<div class="card" style="margin-top:12px">
+  <h4>Usuarios</h4>
+  <div class="user-count" id="playersCount">0 usuarios</div>
+  <table class="user-table">
+    <thead><tr><th>#</th><th>Usuario</th><th>Nombre</th><th>Correo</th><th>Acciones</th></tr></thead>
+    <tbody id="playersBody"></tbody>
+  </table>
+</div>
+<script src="admin.js"></script>
+
+      <div class="small">Liga: LaLiga. Introduce número de jornada y pulsa importar.</div>
+      <div style="margin-top:8px"><input id="round" placeholder="Número de jornada (ej: 12)"><button id="importApi" class="btn">Importar</button></div>
+      <div style="margin-top:10px"><button id="autoCreate" class="btn">Crear jornada vacía (14 partidos)</button></div>
+    </div>
+
+    <div class="card"><h3>Jornadas</h3><div id="jornadasList"></div></div>
+
+    <div class="card"><h3>Resultados y cálculo</h3><div class="small">Selecciona jornada y establece resultados 1/X/2; luego calcula aciertos.</div><div id="resultsPanel"></div><div style="margin-top:10px"><button id="calcBtn" class="btn">Calcular clasificación</button></div><div id="clasificacion" style="margin-top:12px"></div></div>
+  </main>
+</div>
+<script src="auth.js"></script>
+<script>
+const API_BASE='https://www.thesportsdb.com/api/v1/json/3/eventsround.php?id=4335&r=';
+async function fetchRound(r){ const url=API_BASE+encodeURIComponent(r)+'&s=2024-2025'; const res=await fetch(url); if(!res.ok) throw new Error('API error'); const data=await res.json(); return data.events||[]; }
+async function loadData(){ try{ return await fetch('data.json',{cache:'no-store'}).then(r=>r.json()); }catch(e){ return {players:[],jornadas:[]}; } }
+async function saveDownload(obj, name='data.json'){ const blob=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
+function renderJornadas(data){ const list=document.getElementById('jornadasList'); list.innerHTML=''; (data.jornadas||[]).forEach((j,i)=>{ const div=document.createElement('div'); div.className='card'; div.style.marginBottom='8px'; div.innerHTML='<strong>Jornada '+j.id+'</strong> - partidos: '+(j.matches.length || 0)+' <button data-i="'+i+'" class="btn" style="margin-left:8px">Editar</button>'; list.appendChild(div); }); document.querySelectorAll('#jornadasList .btn').forEach(b=>b.addEventListener('click', e=>{ const idx=+e.target.dataset.i; editJornada(idx); })); }
+async function editJornada(idx){ const data=await loadData(); const jornada=data.jornadas[idx]; const panel=document.getElementById('resultsPanel'); panel.innerHTML=''; const table=document.createElement('div'); jornada.matches.forEach((m,mi)=>{ const row=document.createElement('div'); row.style.display='flex'; row.style.gap='8px'; row.style.alignItems='center'; row.style.marginBottom='6px'; row.innerHTML='<div style="width:45%"><strong>'+m.strEvent+'</strong></div><div style="width:30%"><select data-mi="'+mi+'"><option value="">--Resultado--</option><option value="1">1</option><option value="X">X</option><option value="2">2</option></select></div>'; table.appendChild(row); }); const saveBtn=document.createElement('button'); saveBtn.className='btn'; saveBtn.textContent='Guardar resultados'; saveBtn.addEventListener('click', async ()=>{ const selects=table.querySelectorAll('select'); selects.forEach(s=>{ const mi=+s.dataset.mi; const val=s.value; if(val) jornada.results[mi]=val; }); await saveDownload(data); alert('data.json preparado para exportar con resultados'); }); panel.appendChild(table); panel.appendChild(saveBtn); }
+document.getElementById('importApi').addEventListener('click', async ()=>{ const r=document.getElementById('round').value.trim(); if(!r) return alert('Indica número de jornada'); try{ const events=await fetchRound(r); if(events.length===0) return alert('No se encontraron partidos para esa jornada'); const data=await loadData(); const jId = 'J' + r; const matches = events.map(ev=>({id:ev.idEvent,strEvent: ev.strEvent, home:ev.strHomeTeam, away:ev.strAwayTeam, result: null})); data.jornadas = data.jornadas || []; data.jornadas.push({id:jId, matches:matches, results: Array(matches.length).fill(null)}); renderJornadas(data); saveDownload(data); }catch(e){ alert('Error al importar: '+e.message); }});
+document.getElementById('autoCreate').addEventListener('click', async ()=>{ const data=await loadData(); const next = (data.jornadas||[]).length + 1; const matches = Array.from({length:14}).map((_,i)=>({id: 'M'+(i+1), strEvent:'Equipo A vs Equipo B', home:'Equipo A', away:'Equipo B', result:null})); data.jornadas = data.jornadas || []; data.jornadas.push({id:'J'+next, matches:matches, results: Array(14).fill(null)}); renderJornadas(data); saveDownload(data); });
+document.getElementById('calcBtn').addEventListener('click', async ()=>{ const data = await loadData(); const jornadas = data.jornadas || []; if(!jornadas.length) return alert('No hay jornadas'); const j = jornadas[jornadas.length-1]; const players = data.players || []; const res = players.map(p=>{ const pron = (p.pronosticos && p.pronosticos[j.id]) || []; let aciertos=0; for(let i=0;i<j.matches.length;i++){ if(j.results[i] && pron[i] && j.results[i]===pron[i]) aciertos++; } return {name:p.name, displayName:p.displayName || p.name, aciertos:aciertos} }); const counts = {14:0,13:0,12:0,11:0,10:0}; res.forEach(r=>{ if(r.aciertos>=10 && r.aciertos<=14) counts[r.aciertos] = (counts[r.aciertos]||0)+1; }); const clas=document.getElementById('clasificacion'); clas.innerHTML=''; let html='<h4>Resultados Jornada '+j.id+'</h4><table class="table"><tr><th>Jugador</th><th>Aciertos</th></tr>'; res.sort((a,b)=>b.aciertos-a.aciertos).forEach(r=> html += '<tr><td>'+r.displayName+'</td><td>'+r.aciertos+'</td></tr>'); html += '</table><h4>Clasificación 14/13/12/11/10</h4><ul>'; [14,13,12,11,10].forEach(n=> html+='<li>'+n+': '+(counts[n]||0)+'</li>'); html += '</ul>'; clas.innerHTML = html; });
+(async ()=>{ const data=await loadData(); renderJornadas(data); })();
+document.getElementById('menuBtn').addEventListener('click', ()=>{ document.getElementById('sidebar').classList.toggle('open'); });
+</script>
+</body></html>
