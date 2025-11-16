@@ -1,47 +1,16 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Quiniela 32</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="headerbar"><button class="menu-toggle" id="menuBtn">☰</button><div class="site-title">Quiniela 32</div></div>
-  <div class="container-main">
-    <nav class="sidebar" id="sidebar">
-      <a class="active" href="index.html">Inicio</a>
-      <a href="jornadas.html">Jornadas</a>
-      <a href="jugador.html">Jugador</a>
-      <a href="admin.html">Admin</a>
-      <a href="perfil.html">Mi perfil</a>
-      <a href="#" id="logoutBtn">Salir</a>
-    </nav>
-    <main class="content">
-      <div class="card" style="max-width:720px;margin:auto">
-        <h3>Bienvenido a Quiniela 32</h3>
-        <p>Usa el menú lateral para navegar: <strong>Jornadas</strong>, <strong>Jugador</strong>, <strong>Admin</strong>.</p>
-        <div style="margin-top:12px">
-          <h4>Iniciar sesión</h4>
-          <div style="margin-top:8px"><label>Usuario</label><input type="text" id="loginUser" placeholder="Usuario" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd"></div>
-          <div style="margin-top:8px"><label>Contraseña</label>
-            <div class="password-wrapper"><input type="password" id="password" placeholder="Contraseña" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd"><span id="togglePassword" class="eye">👁</span></div>
-          </div>
-          <div style="margin-top:12px"><button id="loginBtn">Entrar</button><span id="msg" class="small" style="margin-left:12px"></span></div>
-          <div style="margin-top:10px" class="small">Usuarios de ejemplo: admin/admin1234 — MIGUI/MIGUI23</div>
-        </div>
-      </div>
-    </main>
-  </div>
-
-<script src="auth.js"></script>
+<!doctype html><html lang='es'><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width,initial-scale=1'/><title>Quiniela 32</title><link rel='stylesheet' href='style.css'></head><body>
+<div class='headerbar'><div class='site-title'>Quiniela 32</div></div>
+<main class='content'><div class='card'><h3>Inicio</h3>
+<button onclick="location.href='index.html'">Inicio</button>
+<button onclick="location.href='admin.html'">Admin</button>
+<button onclick="logout()">Salir</button>
+<h3>Iniciar sesión</h3>
+<label>Usuario</label><input id='loginUser'>
+<label>Contraseña</label><div class='password-wrapper'><input type='password' id='password'><span id='togglePassword'>👁</span></div>
+<button id='loginBtn'>Entrar</button><div id='msg'></div>
+</div></main>
+<script src='auth.js'></script>
 <script>
-document.getElementById('menuBtn').addEventListener('click', ()=>{
-  const sb = document.getElementById('sidebar'); sb.classList.toggle('open');
-});
-document.getElementById('logoutBtn').addEventListener('click', ()=>{
-  sessionStorage.removeItem('currentUser'); localStorage.removeItem('lastLoginUser'); window.location.href='index.html';
-});
-</script>
-</body>
-</html>
+function logout(){sessionStorage.removeItem('currentUser');location='index.html';}
+document.getElementById('togglePassword').onclick=()=>{let p=document.getElementById('password');p.type=p.type=='password'?'text':'password';};
+</script></body></html>
