@@ -12,6 +12,7 @@ button:hover { background:#005fcc; }
 .eye-btn { width:50px; margin-left:6px; background:#444; }
 .eye-btn:hover { background:#222; }
 .row { display:flex; }
+#msg { color:red; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -27,30 +28,19 @@ button:hover { background:#005fcc; }
 <button type="button" class="eye-btn" onclick="togglePass()">👁</button>
 </div>
 
-<button onclick="login()">Entrar</button>
+<button id="loginBtn">Entrar</button>
+
+<div id="msg"></div>
+
+<script src="auth.js"></script>
 
 <script>
 function togglePass(){
   const p=document.getElementById('pass');
   p.type = p.type === 'password' ? 'text' : 'password';
 }
-
-function login(){
-  const u=document.getElementById('user').value.trim();
-  const p=document.getElementById('pass').value.trim();
-
-  if(u==="ADMINISTRADOR" && p==="1234"){
-    window.location="admin.html";
-    return;
-  }
-
-  fetch('data.json').then(r=>r.json()).then(db=>{
-    const player=db.players.find(x=>x.name===u && x.password===p);
-    if(player) window.location="jugador.html?user="+encodeURIComponent(u);
-    else alert("Usuario o contraseña incorrectos");
-  });
-}
 </script>
+
 </div>
 </body>
 </html>
