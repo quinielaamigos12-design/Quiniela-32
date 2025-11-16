@@ -1,10 +1,16 @@
-<!doctype html><html lang='es'>
-<head><meta charset='utf-8'/><meta name='viewport' content='width=device-width,initial-scale=1'/>
-<title>Quiniela 32</title><link rel='stylesheet' href='style.css'></head>
-<body>
-<div class='center-box'>
-  <h1>Quiniela 32</h1>
-  <button onclick="location.href='login_jugador.html'">JUGADOR</button>
-  <button onclick="location.href='login_admin.html'">ADMINISTRADOR</button>
-</div>
-</body></html>
+<!doctype html><html lang='es'><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width,initial-scale=1'/><title>Quiniela 32</title><link rel='stylesheet' href='style.css'></head><body>
+<div class='headerbar'><div class='site-title'>Quiniela 32</div></div>
+<main class='content'><div class='card'><h3>Inicio</h3>
+<button onclick="location.href='index.html'">Inicio</button>
+<button onclick="location.href='admin.html'">Admin</button>
+<button onclick="logout()">Salir</button>
+<h3>Iniciar sesión</h3>
+<label>Usuario</label><input id='loginUser'>
+<label>Contraseña</label><div class='password-wrapper'><input type='password' id='password'><span id='togglePassword'>👁</span></div>
+<button id='loginBtn'>Entrar</button><div id='msg'></div>
+</div></main>
+<script src='auth.js'></script>
+<script>
+function logout(){sessionStorage.removeItem('currentUser');location='index.html';}
+document.getElementById('togglePassword').onclick=()=>{let p=document.getElementById('password');p.type=p.type=='password'?'text':'password';};
+</script></body></html>
