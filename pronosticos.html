@@ -1,15 +1,6 @@
 
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pronósticos</title><link rel="stylesheet" href="css/style.css"></head><body>
-<button class='back' onclick='history.back()'>← Volver</button>
-<div class="card"><h2>Mis pronósticos - Jornada 1</h2><div id="formArea"></div><button id="saveBtn" class="btn">Guardar pronósticos</button></div>
-<script>
-fetch('data.json').then(r=>r.json()).then(db=>{
-  const user = localStorage.getItem('jugadorActivo'); if(!user){ document.getElementById('formArea').innerText='Inicia sesión'; return; }
-  const j = db.jornadas[0]; let html = '<table class="edit-table"><tr><th>Partido</th><th>Tu pronóstico</th></tr>'; for(let i=1;i<=14;i++){ const part = j.partidos[String(i)]; const cur = j.pronosticos[user] ? j.pronosticos[user][String(i)] : ''; html += '<tr><td>'+i+'. '+part+'</td><td><select name="'+i+'"><option value="">--</option><option value="1">1</option><option value="X">X</option><option value="2">2</option></select></td></tr>'; } html += '</table>'; document.getElementById('formArea').innerHTML = html; // set selects
-  for(let i=1;i<=14;i++){ const s = document.querySelector('select[name="'+i+'"]'); if(s && j.pronosticos[user] && j.pronosticos[user][String(i)]) s.value = j.pronosticos[user][String(i)]; }
-  document.getElementById('saveBtn').addEventListener('click', ()=>{
-    const form = {}; for(let i=1;i<=14;i++){ form[String(i)] = document.querySelector('select[name="'+i+'"]').value; }
-    // save to localStorage data_working
-    const dbworking = JSON.parse(localStorage.getItem('data_working')||'{}'); dbworking.jornadas = dbworking.jornadas || db.jornadas; dbworking.jornadas[0].pronosticos = dbworking.jornadas[0].pronosticos || {}; dbworking.jornadas[0].pronosticos[user]=form; localStorage.setItem('data_working', JSON.stringify(dbworking)); alert('Pronósticos guardados localmente. Pide al admin exportar para publicar.'); });
-});
-</script></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mis Pronósticos</title><link rel="stylesheet" href="css/style.css"></head><body>
+<div class="app"><aside class="sidebar">...</aside><main class="content"><header class="topbar"><button id="hamburger">☰</button><h1>Mis Pronósticos</h1></header>
+<section class="card"><div id="mypron"></div><button id="saveBtn" class="btn">Guardar pronósticos</button></section></main></div>
+<script src="js/app.js"></script></body></html>
