@@ -1,26 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Admin - Inicio</title><link rel="stylesheet" href="style.css"></head>
-<body>
-<div class="headerbar"><div class="site-title">Quiniela 32 - Admin</div></div>
-<div class="container-main">
-<nav class="sidebar" id="sidebar">
-  <a href="admin_home.html" class="active">Inicio</a>
-  <a href="admin.html">Gestión Jornadas</a>
-  <a href="admin_results.html">Resultados</a>
-  <a href="admin_pronosticos.html">Pronósticos</a>
-  <a href="admin_saldos.html">Saldos</a>
-  <a href="#" id="logoutAdmin">Salir</a>
-</nav>
-<main class="content">
-  <div class="card" style="max-width:900px;margin:auto;">
-    <h3>Panel de administración</h3>
-    <div style="margin-top:8px">
-      <button onclick="location.href='admin.html'">Editor de Jornadas</button>
-      <button onclick="location.href='admin.html'" class="secondary" style="margin-left:8px">Exportar data.json</button>
-    </div>
-  </div>
-</main>
-</div>
-<script>
-document.getElementById('logoutAdmin').addEventListener('click', ()=>{ sessionStorage.removeItem('currentUser'); location='index.html'; });
-</script>
-</body></html>
+
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title><link rel="stylesheet" href="css/style.css"></head><body>
+<button class='back' onclick='history.back()'>← Volver</button>
+<div class="card"><h2>Admin</h2><p>Desde aquí puedes descargar data.json o subir una nueva versión en el repo.</p><p><a class="btn" href="data.json" download>Ver data.json</a></p></div></body></html>

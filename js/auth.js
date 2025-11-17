@@ -1,46 +1,19 @@
 
-function toggleJugadorPass(){const i=document.getElementById('jugadorPass'); if(i) i.type = i.type==='password'?'text':'password';}
-function toggleAdminPass(){const i=document.getElementById('adminPass'); if(i) i.type = i.type==='password'?'text':'password';}
-
+function togglePass(id){const i=document.getElementById(id); if(i) i.type = i.type==='password'?'text':'password';}
 document.getElementById('loginJugadorForm')?.addEventListener('submit', function(e){
   e.preventDefault();
-  const userInput = document.getElementById('jugadorUser').value.trim();
-  const passInput = document.getElementById('jugadorPass').value.trim();
+  const user = document.getElementById('jugadorUser').value.trim();
+  const pass = document.getElementById('jugadorPass').value.trim();
   fetch('data.json').then(r=>r.json()).then(db=>{
-    // exact match first (case-sensitive)
-    let found = db.players.find(p=> p.username === userInput && p.password === passInput);
-    if(found){
-      localStorage.setItem('jugadorActivo', found.username);
-      window.location='jugador_home.html'; return;
-    }
-    // username exact but wrong password?
-    let userExact = db.players.find(p=> p.username === userInput);
-    if(userExact && userExact.password !== passInput){
-      document.getElementById('loginJugadorError').innerText='❌ Contraseña incorrecta para el usuario especificado.';
-      return;
-    }
-    // case-insensitive fallback: username and password both tried case-insensitive
-    let foundCI = db.players.find(p=> p.username.toLowerCase() === userInput.toLowerCase() && p.password.toLowerCase() === passInput.toLowerCase());
-    if(foundCI){
-      localStorage.setItem('jugadorActivo', foundCI.username);
-      window.location='jugador_home.html'; return;
-    }
-    // username case-insensitive exists but password wrong
-    let userCI = db.players.find(p=> p.username.toLowerCase() === userInput.toLowerCase());
-    if(userCI && userCI.password.toLowerCase() !== passInput.toLowerCase()){
-      document.getElementById('loginJugadorError').innerText='❌ Contraseña incorrecta (prueba mayúsculas/minúsculas).';
-      return;
-    }
-    document.getElementById('loginJugadorError').innerText='❌ Usuario no encontrado. Revisa tu usuario o contacta con el admin.';
-  }).catch(err=>{
-    document.getElementById('loginJugadorError').innerText='❌ Error accediendo a data.json';
-    console.error(err);
-  });
+    let exact = db.players.find(p=> p.username === user && p.password === pass);
+    if(exact){ localStorage.setItem('jugadorActivo', exact.username); location.href='jugador_home.html'; return; }
+    let userExact = db.players.find(p=> p.username === user);
+    if(userExact && userExact.password !== pass){ document.getElementById('loginJugadorError').innerText='❌ Contraseña incorrecta.'; return; }
+    let ci = db.players.find(p=> p.username.toLowerCase()===user.toLowerCase() && p.password.toLowerCase()===pass.toLowerCase());
+    if(ci){ localStorage.setItem('jugadorActivo', ci.username); location.href='jugador_home.html'; return; }
+    let userCI = db.players.find(p=> p.username.toLowerCase()===user.toLowerCase());
+    if(userCI && userCI.password.toLowerCase() !== pass.toLowerCase()){ document.getElementById('loginJugadorError').innerText='❌ Contraseña incorrecta (revisa mayúsculas).'; return; }
+    document.getElementById('loginJugadorError').innerText='❌ Usuario no encontrado.';
+  }).catch(e=>{ document.getElementById('loginJugadorError').innerText='❌ Error leyendo data.json'; console.error(e); });
 });
-
-function loginAdmin(){
-  const u=document.getElementById('adminUser').value.trim();
-  const p=document.getElementById('adminPass').value.trim();
-  if(u==='admin' && p==='admin'){ window.location='admin_home.html'; }
-  else document.getElementById('loginAdminError').innerText='❌ Admin incorrecto';
-}
+function loginAdmin(){ const u=document.getElementById('adminUser').value.trim(); const p=document.getElementById('adminPass').value.trim(); if(u==='admin' && p==='admin'){ location.href='admin_home.html'; } else document.getElementById('loginAdminError').innerText='❌ Admin incorrecto'; }
