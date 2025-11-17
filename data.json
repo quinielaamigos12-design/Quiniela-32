@@ -26,14 +26,14 @@
       "username": "ANDRES",
       "name": "ANDRES",
       "password": "ANDRES4",
-      "saldo": 49,
+      "saldo": 48,
       "email": ""
     },
     {
       "username": "ABELARDO",
       "name": "ABELARDO",
       "password": "ABELARDO5",
-      "saldo": 49,
+      "saldo": 48,
       "email": ""
     },
     {
@@ -47,7 +47,7 @@
       "username": "BARTOLO",
       "name": "BARTOLO",
       "password": "BARTOLO7",
-      "saldo": 49,
+      "saldo": 48,
       "email": ""
     },
     {
@@ -96,7 +96,7 @@
       "username": "SOUSA",
       "name": "SOUSA",
       "password": "SOUSA14",
-      "saldo": 49,
+      "saldo": 48,
       "email": ""
     },
     {
@@ -124,14 +124,14 @@
       "username": "GERRADO",
       "name": "GERRADO",
       "password": "GERRADO18",
-      "saldo": 49,
+      "saldo": 47,
       "email": ""
     },
     {
       "username": "ANDONI",
       "name": "ANDONI",
       "password": "ANDONI19",
-      "saldo": 48,
+      "saldo": 47,
       "email": ""
     },
     {
@@ -145,14 +145,14 @@
       "username": "LOPEZ",
       "name": "LOPEZ",
       "password": "LOPEZ21",
-      "saldo": 49,
+      "saldo": 48,
       "email": ""
     },
     {
       "username": "FRAN",
       "name": "FRAN",
       "password": "FRAN22",
-      "saldo": 49,
+      "saldo": 47,
       "email": ""
     },
     {
@@ -173,7 +173,7 @@
       "username": "FRAN CUR",
       "name": "FRAN CUR",
       "password": "FRANCUR25",
-      "saldo": 49,
+      "saldo": 47,
       "email": ""
     },
     {
@@ -208,7 +208,7 @@
       "username": "DOMINGUEZ",
       "name": "DOMINGUEZ",
       "password": "DOMINGUEZ30",
-      "saldo": 49,
+      "saldo": 48,
       "email": ""
     },
     {
@@ -649,36 +649,36 @@
           "14": "1"
         },
         "FRAN CUR": {
-          "1": "2",
+          "1": "X",
           "2": "2",
-          "3": "X",
-          "4": "1",
-          "5": "2",
-          "6": "1",
-          "7": "1",
-          "8": "1",
-          "9": "1",
-          "10": "1",
-          "11": "1",
-          "12": "1",
-          "13": "X",
-          "14": "1"
-        },
-        "CARLOS FER": {
-          "1": "2",
-          "2": "X",
-          "3": "X",
+          "3": "1",
           "4": "1",
           "5": "2",
           "6": "X",
-          "7": "1",
+          "7": "2",
           "8": "1",
           "9": "1",
-          "10": "X",
+          "10": "2",
+          "11": "1",
+          "12": "X",
+          "13": "1",
+          "14": "2"
+        },
+        "CARLOS FER": {
+          "1": "1",
+          "2": "1",
+          "3": "X",
+          "4": "2",
+          "5": "2",
+          "6": "1",
+          "7": "1",
+          "8": "2",
+          "9": "1",
+          "10": "1",
           "11": "2",
           "12": "1",
-          "13": "X",
-          "14": "1"
+          "13": "1",
+          "14": "2"
         },
         "RAMON": {
           "1": "X",
@@ -697,20 +697,20 @@
           "14": "X"
         },
         "JUAN A": {
-          "1": "1",
-          "2": "X",
+          "1": "X",
+          "2": "1",
           "3": "X",
-          "4": "1",
-          "5": "1",
-          "6": "2",
+          "4": "2",
+          "5": "2",
+          "6": "X",
           "7": "1",
-          "8": "1",
+          "8": "2",
           "9": "1",
           "10": "X",
-          "11": "2",
+          "11": "1",
           "12": "1",
-          "13": "1",
-          "14": "X"
+          "13": "X",
+          "14": "2"
         },
         "SAMUEL": {
           "1": "2",
@@ -745,24 +745,24 @@
           "14": "1"
         },
         "DAVID LUNITA": {
-          "1": "X",
-          "2": "2",
+          "1": "1",
+          "2": "1",
           "3": "X",
-          "4": "1",
+          "4": "2",
           "5": "2",
-          "6": "X",
+          "6": "1",
           "7": "1",
-          "8": "1",
-          "9": "X",
-          "10": "2",
+          "8": "2",
+          "9": "1",
+          "10": "1",
           "11": "1",
           "12": "1",
           "13": "2",
           "14": "1"
         },
         "CRISTIAN": {
-          "1": "2",
-          "2": "1",
+          "1": "1",
+          "2": "2",
           "3": "1",
           "4": "2",
           "5": "X",
@@ -802,19 +802,34 @@
         "FRAN": 3,
         "MIGUI": 7,
         "ARANDA": 6,
-        "FRAN CUR": 6,
-        "CARLOS FER": 8,
+        "FRAN CUR": 3,
+        "CARLOS FER": 6,
         "RAMON": 7,
-        "JUAN A": 8,
+        "JUAN A": 7,
         "SAMUEL": 6,
         "DOMINGUEZ": 4,
-        "DAVID LUNITA": 3,
-        "CRISTIAN": 14
+        "DAVID LUNITA": 5,
+        "CRISTIAN": 12
       },
       "meta": {
-        "worst": "ADRIAN",
-        "second_worst": "ANDONI",
-        "best": "CRISTIAN"
+        "worst": [
+          "ADRIAN",
+          "GERRADO",
+          "ANDONI",
+          "FRAN",
+          "FRAN CUR"
+        ],
+        "second_worst": [
+          "ANDRES",
+          "ABELARDO",
+          "BARTOLO",
+          "SOUSA",
+          "LOPEZ",
+          "DOMINGUEZ"
+        ],
+        "best": [
+          "CRISTIAN"
+        ]
       }
     }
   ],

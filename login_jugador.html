@@ -1,1 +1,12 @@
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Login Jugador</title><link rel='stylesheet' href='css/style.css'></head><body class='login-bg'><button class='back' onclick='history.back()'>← Volver</button><div class='login-card'><h2>Quiniela 32</h2><p class='muted'>Acceso Jugador</p><form id='loginJugadorForm'><label>Usuario</label><input id='jugadorUser' required><label>Contraseña</label><div class='passwrap'><input type='password' id='jugadorPass' required><button type='button' class='eye' onclick='toggleJugadorPass()'>👁</button></div><div id='loginJugadorError' class='error'></div><button class='btn btn-red' type='submit'>Entrar</button></form><a href='index.html' class='smalllink'>← Volver al inicio</a></div><script src='js/auth.js'></script></body></html>
+
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login Jugador</title><link rel="stylesheet" href="css/style.css"></head><body>
+<button class='back' onclick='history.back()'>← Volver</button>
+<div style="max-width:420px;margin:80px auto" class="card">
+<h2>Quiniela 32 — Jugador</h2>
+<form id="loginJugadorForm"><label>Usuario</label><input id="jugadorUser" required style="width:100%;padding:10px;margin:6px 0"><label>Contraseña</label>
+<div style="display:flex;gap:8px"><input id="jugadorPass" type="password" required style="flex:1;padding:10px"><button type="button" onclick="togglePass('jugadorPass')" class="btn">👁</button></div>
+<div id="loginJugadorError" style="color:red;margin-top:8px"></div>
+<button class="btn" type="submit" style="margin-top:12px">Entrar</button></form>
+<p style="margin-top:8px"><a href="index.html">← Volver al inicio</a></p>
+</div><script src="js/auth.js"></script><script src='js/back.js'></script>
+\1</html>
