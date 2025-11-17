@@ -1,6 +1,7 @@
 
 :root{--sidebar-bg:#0A2A43;--accent:#1E90FF;--surface:#fff;--muted:#6B7280;--text:#0F1724;--shadow:0 8px 28px rgba(2,6,23,0.08);}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,Helvetica;background:#f3f7fb;color:var(--text);}
+.back{position:fixed;left:12px;top:12px;background:#fff;border-radius:8px;padding:8px 10px;box-shadow:0 6px 18px rgba(2,6,23,0.08);border:0;cursor:pointer;z-index:999}
 .app{display:flex;min-height:100vh}
 .sidebar{width:260px;background:var(--sidebar-bg);color:#fff;padding:20px 14px;display:flex;flex-direction:column;gap:18px}
 .brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;background:linear-gradient(135deg,var(--accent),#095BC6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
@@ -22,4 +23,7 @@
 .error{color:red;min-height:18px;margin-top:8px}.smalllink{display:block;margin-top:12px;color:#666;text-decoration:none}
 .pron-table{width:100%;border-collapse:collapse}.pron-table th, .pron-table td{border:1px solid #eee;padding:6px;text-align:center}
 .edit-table{width:100%;border-collapse:collapse}.edit-table td, .edit-table th{padding:8px;border-bottom:1px solid #f0f0f0}
+.worst{background:#ffc6c6} /* red soft */
+.second-worst{background:#fff0b3} /* yellow soft */
+.best{background:#d6f5d6} /* green soft - visual only */
 @media (max-width:900px){.sidebar{position:fixed;left:-280px;top:0;height:100vh}.sidebar.open{left:0}}

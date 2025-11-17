@@ -1,7 +1,6 @@
 
 function toggleJugadorPass(){const i=document.getElementById('jugadorPass'); if(i) i.type = i.type==='password'?'text':'password';}
 function toggleAdminPass(){const i=document.getElementById('adminPass'); if(i) i.type = i.type==='password'?'text':'password';}
-
 document.getElementById('loginJugadorForm')?.addEventListener('submit', function(e){
   e.preventDefault();
   const user=document.getElementById('jugadorUser').value.trim();
@@ -13,10 +12,4 @@ document.getElementById('loginJugadorForm')?.addEventListener('submit', function
     window.location='jugador_home.html';
   });
 });
-
-function loginAdmin(){
-  const u=document.getElementById('adminUser').value.trim();
-  const p=document.getElementById('adminPass').value.trim();
-  if(u==='admin' && p==='admin'){ window.location='admin_home.html'; }
-  else document.getElementById('loginAdminError').innerText='❌ Admin incorrecto';
-}
+function loginAdmin(){ const u=document.getElementById('adminUser').value.trim(); const p=document.getElementById('adminPass').value.trim(); if(u==='admin' && p==='admin'){ window.location='admin_home.html'; } else document.getElementById('loginAdminError').innerText='❌ Admin incorrecto'; }
