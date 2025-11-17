@@ -1,13 +1,4 @@
-<!doctype html><html><head><meta charset='utf-8'/>
-<title>Login Admin</title><link rel='stylesheet' href='style.css'></head>
-<body>
-<div class='card'>
-<h2>Login Admin</h2>
-<label>Usuario</label><input id='user'>
-<label>Contraseña</label><input type='password' id='pass'>
-<button id='loginBtn'>Entrar</button>
-<div id='msg'></div>
-</div>
-<script src='auth.js'></script>
-<script>document.getElementById('loginBtn').onclick=()=>authLoginAdmin(user.value,pass.value);</script>
-</body></html>
+
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login Admin</title><link rel="stylesheet" href="css/style.css"></head><body class="login-bg">
+<div class="login-card"><h2>Admin</h2><form id="loginAdminForm"><label>Usuario</label><input id="adminUser"><label>Contraseña</label><div class="passwrap"><input type="password" id="adminPass"><button type="button" class="eye" onclick="toggleAdminPass()">👁</button></div><div id="loginAdminError" class="error"></div><button class="btn btn-red" type="button" onclick="loginAdmin()">Entrar</button></form><a href="index.html" class="smalllink">← Volver</a></div><script src="js/auth.js"></script></body></html>

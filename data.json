@@ -226,17 +226,17 @@
       "partidos": {
         "1": "Girona - Rayo Vallecano",
         "2": "Villarreal - R. Oviedo",
-        "3": "Alav\u00e9s - Levante",
+        "3": "Alavés - Levante",
         "4": "Mallorca - Barcelona",
         "5": "Valencia - Real Sociedad",
         "6": "Celta - Getafe",
         "7": "Athletic Club - Sevilla",
         "8": "Espanyol - At. Madrid",
-        "9": "Racing Santander - Castell\u00f3n",
-        "10": "M\u00e1laga - Eibar",
+        "9": "Racing Santander - Castellón",
+        "10": "Málaga - Eibar",
         "11": "Granada - Deportivo",
-        "12": "C\u00e1diz - Mirand\u00e9s",
-        "13": "Huesca - Legan\u00e9s",
+        "12": "Cádiz - Mirandés",
+        "13": "Huesca - Leganés",
         "14": "Las Palmas - Andorra"
       },
       "pronosticos": {
@@ -736,6 +736,22 @@
           "13": "",
           "14": ""
         }
+      },
+      "resultado": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "6": "",
+        "7": "",
+        "8": "",
+        "9": "",
+        "10": "",
+        "11": "",
+        "12": "",
+        "13": "",
+        "14": ""
       }
     }
   ],
