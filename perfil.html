@@ -1,28 +1,4 @@
 
 <!doctype html><html><head><meta charset="utf-8"></head><body>
-<button class="back" onclick="history.back()" aria-label="Volver">←</button>
-<div class="card" style="max-width:520px;margin:24px">
-  <h2>Mi perfil</h2>
-  <div id="profileArea"></div>
-  <button id="saveProfile" class="btn">Guardar cambios (local)</button>
-</div>
-<script>
-fetch('data.json').then(r=>r.json()).then(db=>{
-  const user = localStorage.getItem('jugadorActivo'); if(!user){ document.getElementById('profileArea').innerText='Inicia sesión'; return; }
-  const p = db.players.find(x=>x.username===user); if(!p){ document.getElementById('profileArea').innerText='Usuario no encontrado'; return; }
-  document.getElementById('profileArea').innerHTML = '<label>Nombre</label><input id="fName" value="'+(p.name||'')+'" style="width:100%;padding:8px;margin:6px 0;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#e6eef6"><label>Email</label><input id="fEmail" value="'+(p.email||'')+'" style="width:100%;padding:8px;margin:6px 0;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#e6eef6"><label>Nueva contraseña</label><input id="fPass" type="password" placeholder='' style="width:100%;padding:8px;margin:6px 0;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#e6eef6">';
-  document.getElementById('saveProfile').addEventListener('click', ()=>{
-    const newName = document.getElementById('fName').value.trim();
-    const newEmail = document.getElementById('fEmail').value.trim();
-    const newPass = document.getElementById('fPass').value.trim();
-    const dbw = JSON.parse(localStorage.getItem('data_working')||'{}');
-    dbw.players = dbw.players || db.players;
-    const me = dbw.players.find(x=>x.username===user);
-    if(me){ me.name = newName; me.email = newEmail; if(newPass) me.password = newPass; }
-    localStorage.setItem('data_working', JSON.stringify(dbw));
-    alert('Cambios guardados localmente. Pide al admin exportar para publicar.');
-  });
-});
-</script>
-<script src="js/back.js"></script>
-</body></html>
+<button class='back' onclick='history.back()'>← Volver</button><div class="card"><h2>Mi perfil</h2><div id="profile"></div></div><script>fetch('data.json').then(r=>r.json()).then(db=>{ const user=localStorage.getItem('jugadorActivo'); if(!user){ document.getElementById('profile').innerText='Inicia sesión'; return;} const p=db.players.find(x=>x.username===user); document.getElementById('profile').innerHTML = '<p><strong>'+p.name+'</strong></p><p>Saldo: '+p.saldo+' €</p>'; });</script><script src='js/back.js'></script>
+\1</html>
