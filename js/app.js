@@ -14,7 +14,7 @@ function renderJornada1(){
     html += '<th>Aciertos</th></tr></thead><tbody>';
     db.players.forEach(player=>{
       html += '<tr><td>'+player.username+'</td>';
-      let aciertos=0;
+      let aciertos= j.aciertos && j.aciertos[player.username] ? j.aciertos[player.username] : 0;
       for(let i=1;i<=14;i++){
         const p = j.pronosticos[player.username] ? j.pronosticos[player.username][String(i)] : '';
         let cls = p? 'filled':'empty';
@@ -56,24 +56,24 @@ function saveMyPron(){
     const user = localStorage.getItem('jugadorActivo');
     if(!user){ alert('Inicia sesión'); return; }
     db.jornadas[0].pronosticos[user] = data;
-    // save to localStorage as proxy (admin must export to repo to publish)
     localStorage.setItem('data_working', JSON.stringify(db));
     alert('Pronósticos guardados en memoria. Pide al admin exportar data.json para hacerlos globales.');
   });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-  if(document.getElementById('matches')) renderJornada1();
-  if(document.getElementById('mypron')) renderMyPron();
-  if(document.getElementById('aciertos')) renderAciertos();
-  if(document.getElementById('perfil')) renderPerfil();
-});
-
 function renderAciertos(){
   loadData().then(db=>{
     const out = document.getElementById('aciertos');
     if(!out) return;
-    out.innerHTML = '<p>Función de aciertos pendiente (se calculará cuando cargues resultados)</p>';
+    const j = db.jornadas && db.jornadas[0];
+    if(!j){ out.innerHTML = '<p>No hay jornadas</p>'; return; }
+    let html = '<table class="pron-table"><thead><tr><th>Jugador</th><th>Aciertos</th></tr></thead><tbody>';
+    db.players.forEach(p=>{
+      const a = j.aciertos && j.aciertos[p.username] ? j.aciertos[p.username] : 0;
+      html += '<tr><td>'+p.username+'</td><td>'+a+'</td></tr>';
+    });
+    html += '</tbody></table>';
+    out.innerHTML = html;
   });
 }
 
@@ -83,6 +83,13 @@ function renderPerfil(){
     const user = localStorage.getItem('jugadorActivo');
     if(!user){ out.innerHTML='Inicia sesión'; return; }
     const p = db.players.find(x=>x.username===user);
-    out.innerHTML = '<p><strong>'+p.name+'</strong></p><p>Saldo: '+p.saldo+' €</p>';
+    out.innerHTML = '<p><strong>'+p.name+'</strong></p><p>Saldo: '+p.saldo+' €</p><p>Aciertos Jornada 1: '+(db.jornadas[0].aciertos[user]||0)+'</p>';
   });
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+  if(document.getElementById('matches')) renderJornada1();
+  if(document.getElementById('mypron')) renderMyPron();
+  if(document.getElementById('aciertos')) renderAciertos();
+  if(document.getElementById('perfil')) renderPerfil();
+});
