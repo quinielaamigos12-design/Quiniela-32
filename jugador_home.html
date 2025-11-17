@@ -1,5 +1,46 @@
 
-<!doctype html><html><head><meta charset="utf-8"></head><body>
-<button class='back' onclick='history.back()' aria-label='Volver'>← Volver</button>
-<div class="app"><aside class="sidebar"><div style="display:flex;align-items:center;gap:12px"><div class="logo">⚽</div><div><div id="userName" style="font-weight:800">Jugador</div></div></div><nav style="margin-top:12px"><a class="nav-item" href="jugador_home.html">Inicio</a><a class="nav-item" href="pronosticos.html">Pronósticos</a><a class="nav-item" href="jornadas.html">Jornadas</a><a class="nav-item" href="aciertos.html">Aciertos</a><a class="nav-item" href="perfil.html">Mi perfil</a><a class="nav-item" href="index.html">Salir</a></nav></aside><main class="content"><div class="card"><h2 id="welcome">Bienvenido</h2><p>Resumen</p></div></main></div><script>const user=localStorage.getItem('jugadorActivo'); if(user) document.getElementById('welcome').innerText='Bienvenido, '+user; fetch('data.json').then(r=>r.json()).then(db=>{ const u=localStorage.getItem('jugadorActivo'); if(u){ const p=db.players.find(x=>x.username===u); if(p) document.getElementById('welcome').innerText='Bienvenido, '+p.name; }});</script><script src='js/back.js'></script>
-\1</html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Jugador Home</title><link rel="stylesheet" href="css/style.css"></head><body>
+<button class="back" onclick="history.back()" aria-label="Volver">←</button>
+<div class="app">
+  <aside class="sidebar">
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="img/group_temp.svg" class="profile-pic" alt="Foto del grupo">
+      <div>
+        <div id="userName" style="font-weight:800">Jugador</div>
+        <div class="small-muted" id="userEmail"></div>
+      </div>
+    </div>
+    <nav style="margin-top:12px">
+      <a class="nav-item" href="jugador_home.html">Inicio</a>
+      <a class="nav-item" href="pronosticos.html">Pronósticos</a>
+      <a class="nav-item" href="jornadas.html">Jornadas</a>
+      <a class="nav-item" href="aciertos.html">Aciertos</a>
+      <a class="nav-item" href="perfil.html">Mi perfil</a>
+      <a class="nav-item" href="index.html">Salir</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <div class="card header-welcome">
+      <div>
+        <h2 id="welcome">Bienvenido</h2>
+        <p class="small-muted">Presidente: "En cada jornada se demuestra el espíritu del equipo."</p>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <p class="small-muted">Saldo</p>
+        <p id="saldo" style="font-size:20px;font-weight:800">50 €</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Jornada activa</h3>
+      <p>Accede a la jornada actual y coloca tus pronósticos.</p>
+      <p><a class="btn" href="jornadas.html">Ver Jornadas</a></p>
+    </div>
+  </main>
+</div>
+<script>
+const user = localStorage.getItem('jugadorActivo');
+if(user){ document.getElementById('userName').innerText = user; document.getElementById('welcome').innerText = 'Bienvenido, '+user; }
+fetch('data.json').then(r=>r.json()).then(db=>{ const u=localStorage.getItem('jugadorActivo'); if(u){ const p = db.players.find(x=>x.username===u); if(p){ document.getElementById('saldo').innerText = p.saldo + ' €'; document.getElementById('userEmail').innerText = p.email || ''; } } });
+</script>
+<script src="js/back.js"></script>
+</body></html>
