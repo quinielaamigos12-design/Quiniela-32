@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quiniela32 — App</title>
 <link rel="stylesheet" href="css/style.css"></head><body>
 <div class="app">
@@ -11,6 +12,7 @@
       <button class="nav-item" data-section="pronosticos">Pronósticos</button>
       <button class="nav-item" data-section="aciertos">Aciertos</button>
       <button class="nav-item" data-section="perfil">Mi perfil</button>
+      <button class="nav-item" data-section="admin" id="adminBtn">Admin</button>
       <button class="nav-item" id="logout">Cerrar sesión</button>
     </nav>
     <div style="margin-top:auto" class="muted small">Usuario: <strong id="currentUser">INVITADO</strong></div>
@@ -30,6 +32,16 @@
       <div style="display:flex;align-items:center;justify-content:space-between">
         <h2>Panel jugador</h2><div class="muted">Jornada actual: <strong id="activeJLabel">1</strong></div>
       </div>
+
+      <!-- Group banner + president message -->
+      <div id="groupBanner" class="card" style="display:flex;gap:12px;align-items:center">
+        <img id="groupImage" src="" alt="Foto del grupo" style="width:120px;height:80px;object-fit:cover;border-radius:8px;display:none">
+        <div>
+          <div id="presidenteMsg" class="muted">Bienvenidos a la Quiniela.</div>
+          <div class="small muted" id="presidenteByline"></div>
+        </div>
+      </div>
+
       <div class="tabs" id="jornadaTabs"></div>
       <div class="grid">
         <div>
@@ -60,6 +72,25 @@
         <div class="muted small">Los cambios se guardan localmente en la app.</div>
       </div>
     </section>
+
+    <!-- Admin section (hidden by default) -->
+    <section id="admin" class="card section" style="display:none">
+      <h2>Administración</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-direction:column;max-width:720px">
+        <label>Foto del grupo (subir imagen)
+          <input id="groupUpload" type="file" accept="image/*">
+        </label>
+        <label>Frase del Presidente
+          <input id="presidenteInput" type="text" placeholder="Escribe la frase del presidente">
+        </label>
+        <div style="display:flex;gap:8px">
+          <button class="btn" id="saveAdmin">Guardar</button>
+          <button class="btn ghost" id="clearAdmin">Borrar foto y frase</button>
+        </div>
+        <div class="muted small">La foto y la frase se almacenan localmente para que aparezcan en Inicio.</div>
+      </div>
+    </section>
+
   </main>
 </div>
 

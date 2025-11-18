@@ -1,1 +1,21 @@
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Admin</title><link rel='stylesheet' href='css/style.css'></head><body><div style='max-width:900px;margin:24px auto'><h2>Admin Home</h2><p>Panel admin.</p><p><a class='btn' href='app.html'>Volver a la app</a></p></div></body></html>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin</title><link rel="stylesheet" href="css/style.css"></head><body>
+<div style="max-width:900px;margin:24px auto">
+<h2>Admin Home</h2>
+<p>Opciones de administración rápidas</p>
+<label>Foto del grupo (subir imagen)<input id="groupUpload" type="file" accept="image/*"></label>
+<label>Frase del Presidente<input id="presidenteInput" type="text" placeholder="Escribe la frase del presidente"></label>
+<div style="margin-top:8px"><button id="saveAdmin" class="btn">Guardar</button><button id="clearAdmin" class="btn ghost">Borrar</button></div>
+<p><a class="btn" href="app.html">Abrir app</a></p>
+<script>
+document.getElementById('saveAdmin')?.addEventListener('click', function(){
+  const fi=document.getElementById('groupUpload');
+  const frase=document.getElementById('presidenteInput').value.trim();
+  if(fi && fi.files && fi.files[0]){
+    const r=new FileReader();
+    r.onload=function(e){ localStorage.setItem('quiniela_group_img', e.target.result); if(frase) localStorage.setItem('quiniela_presidente_msg', frase); alert('Guardado'); };
+    r.readAsDataURL(fi.files[0]);
+  } else { if(frase){ localStorage.setItem('quiniela_presidente_msg', frase); alert('Frase guardada'); } else alert('Sube una imagen o escribe una frase'); }
+});
+document.getElementById('clearAdmin')?.addEventListener('click', function(){ localStorage.removeItem('quiniela_group_img'); localStorage.removeItem('quiniela_presidente_msg'); alert('Eliminado'); });
+</script>
+</div></body></html>
