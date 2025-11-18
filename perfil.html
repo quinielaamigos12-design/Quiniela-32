@@ -1,1 +1,4 @@
-<html><body><h2>Perfil editable</h2></body></html>
+
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<button class='back' onclick='history.back()'>← Volver</button><div class="card"><h2>Mi perfil</h2><div id="profile"></div></div><script>fetch('data.json').then(r=>r.json()).then(db=>{ const user=localStorage.getItem('jugadorActivo'); if(!user){ document.getElementById('profile').innerText='Inicia sesión'; return;} const p=db.players.find(x=>x.username===user); document.getElementById('profile').innerHTML = '<p><strong>'+p.name+'</strong></p><p>Saldo: '+p.saldo+' €</p>'; });</script><script src='js/back.js'></script>
+\1</html>

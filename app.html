@@ -1,12 +1,7 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Quiniela32 — V25</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiniela32 — App</title>
+<link rel="stylesheet" href="css/style.css"></head><body>
 <div class="app">
   <aside class="sidebar card">
     <div class="brand"><div class="logo">Q32</div><div><h1>Quiniela32</h1><div class="muted">Temporada 2025-2026</div></div></div>
@@ -20,7 +15,6 @@
     </nav>
     <div style="margin-top:auto" class="muted small">Usuario: <strong id="currentUser">INVITADO</strong></div>
   </aside>
-
   <main class="main">
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
@@ -29,7 +23,6 @@
       </div>
       <div style="display:flex;gap:8px;align-items:center">
         <label class="muted">Color</label><input id="accentPicker" type="color" value="#06b6d4" aria-label="Color de acento">
-        <button class="btn" id="openLogin">Login</button>
       </div>
     </div>
 
@@ -54,22 +47,9 @@
       </div>
     </section>
 
-    <section id="jornadas" class="card section" style="display:none">
-      <h2>Jornadas</h2>
-      <div id="jornadasList"></div>
-    </section>
-
-    <section id="pronosticos" class="card section" style="display:none">
-      <h2>Pronósticos por jornada</h2>
-      <p class="muted">Selecciona una jornada y edita tus pronósticos. Se guardan localmente.</p>
-      <div id="pronosticosArea"></div>
-    </section>
-
-    <section id="aciertos" class="card section" style="display:none">
-      <h2>Aciertos</h2>
-      <div id="aciertosArea"></div>
-    </section>
-
+    <section id="jornadas" class="card section" style="display:none"><h2>Jornadas</h2><div id="jornadasList"></div></section>
+    <section id="pronosticos" class="card section" style="display:none"><h2>Pronósticos por jornada</h2><div id="pronosticosArea"></div></section>
+    <section id="aciertos" class="card section" style="display:none"><h2>Aciertos</h2><div id="aciertosArea"></div></section>
     <section id="perfil" class="card section" style="display:none">
       <h2>Mi perfil</h2>
       <div style="max-width:520px;display:flex;flex-direction:column;gap:8px">
@@ -80,33 +60,10 @@
         <div class="muted small">Los cambios se guardan localmente en la app.</div>
       </div>
     </section>
-
   </main>
 </div>
 
-<!-- Login modal (jugador/admin same screen) -->
-<div id="loginModal" class="modal" style="display:none">
-  <div class="panel card">
-    <h3>Iniciar sesión</h3>
-    <label>Usuario<input id="loginUser" type="text"></label>
-    <label>Contraseña<input id="loginPass" type="password"></label>
-    <label>Rol
-      <select id="loginRole"><option value="jugador">Jugador</option><option value="admin">Administrador</option></select>
-    </label>
-    <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" id="doLogin">Entrar</button><button class="btn ghost" id="closeLogin">Cancelar</button></div>
-    <div id="loginError" style="color:red;margin-top:8px"></div>
-  </div>
-</div>
-
 <!-- Results modal -->
-<div id="resultsModal" class="modal" style="display:none">
-  <div class="panel card">
-    <h3>Editar resultados (Jornada <span id="resJ">1</span>)</h3>
-    <div id="resInputs"></div>
-    <div style="display:flex;gap:8px;margin-top:12px"><button class="btn" id="saveResults">Guardar</button><button class="btn ghost" id="closeResults">Cerrar</button></div>
-  </div>
-</div>
+<div id="resultsModal" class="modal" style="display:none"><div class="panel card"><h3>Editar resultados (Jornada <span id="resJ">1</span>)</h3><div id="resInputs"></div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn" id="saveResults">Guardar</button><button class="btn ghost" id="closeResults">Cerrar</button></div></div></div>
 
-<script src="js/main.js"></script>
-</body>
-</html>
+<script src="js/main.js"></script></body></html>
